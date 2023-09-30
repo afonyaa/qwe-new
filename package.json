@@ -1,0 +1,16 @@
+{
+  "name": "quiz-web-engine",
+  "packageManager": "yarn@3.6.3",
+  "license": "mit",
+  "scripts": {
+    "start:visitor-portal": "",
+    "start:app": ""
+  },
+  "workspaces": [
+    "packages/*",
+    "packages/core/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}

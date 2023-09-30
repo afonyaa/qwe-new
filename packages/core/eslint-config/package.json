@@ -1,0 +1,13 @@
+{
+  "name": "@quiz-web-engine/eslint-config",
+  "version": "1.0.0",
+  "packageManager": "yarn@3.6.3",
+  "main": "eslintReact.js",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3"
+  }
+}

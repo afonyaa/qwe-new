@@ -1,0 +1,11 @@
+{
+  "name": "@quiz-web-engine/ts-config",
+  "version": "1.0.0",
+  "packageManager": "yarn@3.6.3",
+  "files": [
+    "base.json"
+  ],
+  "devDependencies": {
+    "typescript": "5.2.2"
+  }
+}

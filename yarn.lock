@@ -2882,6 +2882,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "quiz-web-engine@workspace:."
   dependencies:
+    eslint: ^8.45.0
     prettier: ^3.0.3
   languageName: unknown
   linkType: soft

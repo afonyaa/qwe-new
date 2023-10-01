@@ -10,6 +10,7 @@
     "packages/core/*"
   ],
   "devDependencies": {
+    "eslint": "^8.45.0",
     "prettier": "^3.0.3"
   }
 }

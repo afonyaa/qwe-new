@@ -1,5 +1,5 @@
 {
-  "name": "@quiz-web-engine/app",
+  "name": "@quiz-web-engine/student",
   "private": true,
   "version": "0.0.0",
   "type": "module",

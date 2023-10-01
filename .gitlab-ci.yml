@@ -1,0 +1,10 @@
+image: node:18.12.1
+stages:
+  - lint
+
+eslint:
+  stage: lint
+  variables:
+    NODE_VERSION: 18.12.1
+  script:
+    - yarn lint

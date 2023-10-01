@@ -3,8 +3,7 @@
   "packageManager": "yarn@3.6.3",
   "license": "mit",
   "scripts": {
-    "start:visitor-portal": "",
-    "start:app": ""
+    "lint": "eslint packages/*"
   },
   "workspaces": [
     "packages/*",

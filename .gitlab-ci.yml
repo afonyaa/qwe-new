@@ -40,9 +40,9 @@ deploy:
   image: ubuntu:latest
   stage: deploy
   script:
-    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get install --reinstall -qqy openssl
+    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - scp . afonya@158.160.65.245:~/cicd
+    - scp -o StrictHostKeyChecking=no . afonya@158.160.65.245:~/cicd

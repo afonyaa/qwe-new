@@ -2884,6 +2884,7 @@ __metadata:
   dependencies:
     eslint: ^8.45.0
     prettier: ^3.0.3
+    typescript: 5.2.2
   languageName: unknown
   linkType: soft
 

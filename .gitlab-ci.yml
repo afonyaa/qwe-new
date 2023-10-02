@@ -34,3 +34,4 @@ types:
     - yarn install --frozen-lockfile
   script:
     - yarn lint:types
+    

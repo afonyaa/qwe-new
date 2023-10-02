@@ -8,7 +8,6 @@ cache:
     - .yarn/cache
     - node_modules
 
-
 eslint:
   stage: lint
   variables:

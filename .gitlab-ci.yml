@@ -36,6 +36,7 @@ stages:
 #  script:
 #    - yarn lint:types
 
+
 deploy:
   image: ubuntu:latest
   stage: deploy

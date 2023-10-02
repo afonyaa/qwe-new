@@ -40,7 +40,8 @@ deploy:
   stage: deploy
   script:
     - eval $(ssh-agent -s)
-    - echo '$SSH_PRIVATE_KEY' | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - scp . afonya@158.160.65.245:~/cicd
+    - echo "$SSH_PRIVATE_KEY" | head -n 2
+#    - echo '$SSH_PRIVATE_KEY' | tr -d '\r' | ssh-add -
+#    - mkdir -p ~/.ssh
+#    - chmod 700 ~/.ssh
+#    - scp . afonya@158.160.65.245:~/cicd

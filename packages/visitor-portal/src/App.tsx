@@ -1,7 +1,7 @@
 import { Dashboard } from './containers/Dashboard';
 
-function App() {
+const App = () => {
   return <Dashboard />;
-}
+};
 
 export default App;

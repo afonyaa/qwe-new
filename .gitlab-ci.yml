@@ -9,3 +9,10 @@ eslint:
   script:
     - yarn install
     - yarn lint:eslint
+
+types:
+  stage: lint
+  variables:
+    NODE_VERSION: 18.12.1
+  script:
+    - yarn lint:types

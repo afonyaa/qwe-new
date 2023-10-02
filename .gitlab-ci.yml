@@ -8,29 +8,29 @@ cache:
     - .yarn/cache
     - node_modules
 
-before_script:
-  - yarn install --frozen-lockfile
-
 eslint:
   stage: lint
   variables:
     NODE_VERSION: 18.12.1
+  before_script:
+    - yarn install --frozen-lockfile
   script:
-    - yarn install --cached
     - yarn lint:eslint
 
 check-format:
   stage: lint
   variables:
     NODE_VERSION: 18.12.1
+  before_script:
+    - yarn install --frozen-lockfile
   script:
-    - yarn install --cached
     - yarn check:format
 
 types:
   stage: lint
   variables:
     NODE_VERSION: 18.12.1
+  before_script:
+    - yarn install --frozen-lockfile
   script:
-    - yarn install --cached
     - yarn lint:types

@@ -1,36 +1,46 @@
 image: node:18.12.1
 stages:
-  - lint
+  #  - lint
+  - deploy
+#
+#cache:
+#  key: ${CI_COMMIT_REF_SLUG}
+#  paths:
+#    - .yarn/cache
+#    - node_modules
+#
+#eslint:
+#  stage: lint
+#  variables:
+#    NODE_VERSION: 18.12.1
+#  before_script:
+#    - yarn install --frozen-lockfile
+#  script:
+#    - yarn lint:eslint
+#
+#check-format:
+#  stage: lint
+#  variables:
+#    NODE_VERSION: 18.12.1
+#  before_script:
+#    - yarn install --frozen-lockfile
+#  script:
+#    - yarn check:format
+#
+#types:
+#  stage: lint
+#  variables:
+#    NODE_VERSION: 18.12.1
+#  before_script:
+#    - yarn install --frozen-lockfile
+#  script:
+#    - yarn lint:types
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - .yarn/cache
-    - node_modules
-
-eslint:
-  stage: lint
-  variables:
-    NODE_VERSION: 18.12.1
-  before_script:
-    - yarn install --frozen-lockfile
+deploy:
+  stage: deploy
   script:
-    - yarn lint:eslint
-
-check-format:
-  stage: lint
-  variables:
-    NODE_VERSION: 18.12.1
-  before_script:
-    - yarn install --frozen-lockfile
-  script:
-    - yarn check:format
-
-types:
-  stage: lint
-  variables:
-    NODE_VERSION: 18.12.1
-  before_script:
-    - yarn install --frozen-lockfile
-  script:
-    - yarn lint:types
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - scp . afonya@158.160.65.245:~/cicd

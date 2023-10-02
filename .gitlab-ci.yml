@@ -15,4 +15,5 @@ types:
   variables:
     NODE_VERSION: 18.12.1
   script:
+    - yarn install
     - yarn lint:types

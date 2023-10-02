@@ -40,7 +40,7 @@ deploy:
   image: ubuntu:latest
   stage: deploy
   script:
-    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client
+    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get install --reinstall -qqy openssl
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh

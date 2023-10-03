@@ -35,7 +35,6 @@ stages:
 #    - yarn install --frozen-lockfile
 #  script:
 #    - yarn lint:types
-
 deploy:
   image: ubuntu:latest
   stage: deploy
@@ -46,4 +45,3 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" . afonya@158.160.65.245:~/cicd/
-#    - scp -r -o StrictHostKeyChecking=no . afonya@158.160.65.245:~/cicd

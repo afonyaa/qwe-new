@@ -43,6 +43,8 @@ build-visitor-portal:
 deploy:
   image: ubuntu:latest
   stage: deploy
+  needs:
+    - build-visitor-portal
   script:
     - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
     - eval $(ssh-agent -s)

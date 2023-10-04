@@ -1,8 +1,8 @@
 image: node:18.12.1
 stages:
   - lint
-  - deploy
   - build
+  - deploy
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -43,8 +43,6 @@ build-visitor-portal:
 deploy:
   image: ubuntu:latest
   stage: deploy
-  needs:
-    - job: build-visitor-portal
   script:
     - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
     - eval $(ssh-agent -s)

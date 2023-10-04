@@ -30,17 +30,24 @@ types:
     - yarn install --frozen-lockfile
   script:
     - yarn lint:types
-#
-#build-apps:
-#  stage: build
 
-deploy:
-  image: ubuntu:latest
-  stage: deploy
-  script:
-    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - rsync -avz -e "ssh -o StrictHostKeyChecking=no" . devops@158.160.65.245:~/apps/visitor-portal
+build-visitor-portal:
+  stage: build
+  before_script:
+    - yarn install --frozen-lockfile
+  script: yarn build:visitor-portal
+  artifacts:
+    when: always
+    paths:
+      - /packages/visitor-portal/dist
+
+#deploy:
+#  image: ubuntu:latest
+#  stage: deploy
+#  script:
+#    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
+#    - eval $(ssh-agent -s)
+#    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+#    - mkdir -p ~/.ssh
+#    - chmod 700 ~/.ssh
+#    - rsync -avz -e "ssh -o StrictHostKeyChecking=no" . devops@158.160.65.245:~/apps/visitor-portal

@@ -6,7 +6,7 @@ stages:
   - deploy
 
 cache:
-  key: ${CI_COMMIT_REF_SLUG}
+  key: $CI_COMMIT_REF_SLUG
   paths:
     - .yarn/cache
 
@@ -41,9 +41,11 @@ build-visitor-portal:
     paths:
       - packages/visitor-portal/dist/
 
-deploy:
+deploy apps:
   image: ubuntu:latest
   stage: deploy
+  needs:
+    - build-visitor-portal
   script:
     - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
     - eval $(ssh-agent -s)

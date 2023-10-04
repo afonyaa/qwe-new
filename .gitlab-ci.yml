@@ -39,7 +39,7 @@ build-visitor-portal:
   artifacts:
     when: always
     paths:
-      - /packages/visitor-portal/dist
+      - /packages/visitor-portal/dist/
 
 #deploy:
 #  image: ubuntu:latest

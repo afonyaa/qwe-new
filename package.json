@@ -8,7 +8,8 @@
     "lint:types:student": "yarn workspace @quiz-web-engine/student lint:types",
     "lint:types:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal lint:types",
     "lint:types": "yarn run lint:types:student && yarn run lint:types:visitor-portal",
-    "lint:format": "prettier packages/* --write"
+    "lint:format": "prettier packages/* --write",
+    "build:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build"
   },
   "workspaces": [
     "packages/*",

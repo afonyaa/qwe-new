@@ -1,40 +1,38 @@
 image: node:18.12.1
 stages:
-  #  - lint
+  - lint
   - deploy
+  - build
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .yarn/cache
+    - node_modules
+
+eslint:
+  stage: lint
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - yarn lint:eslint
+
+check-format:
+  stage: lint
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - yarn check:format
+
+types:
+  stage: lint
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - yarn lint:types
 #
-#cache:
-#  key: ${CI_COMMIT_REF_SLUG}
-#  paths:
-#    - .yarn/cache
-#    - node_modules
-#
-#eslint:
-#  stage: lint
-#  variables:
-#    NODE_VERSION: 18.12.1
-#  before_script:
-#    - yarn install --frozen-lockfile
-#  script:
-#    - yarn lint:eslint
-#
-#check-format:
-#  stage: lint
-#  variables:
-#    NODE_VERSION: 18.12.1
-#  before_script:
-#    - yarn install --frozen-lockfile
-#  script:
-#    - yarn check:format
-#
-#types:
-#  stage: lint
-#  variables:
-#    NODE_VERSION: 18.12.1
-#  before_script:
-#    - yarn install --frozen-lockfile
-#  script:
-#    - yarn lint:types
+#build-apps:
+#  stage: build
 
 deploy:
   image: ubuntu:latest

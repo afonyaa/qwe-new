@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "lint:eslint": "eslint . --ext ts,tsx --max-warnings 0",
+    "build": "vite build",
     "lint:types": "tsc",
+    "lint:eslint": "eslint . --ext ts,tsx --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {

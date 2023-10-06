@@ -51,6 +51,16 @@ build quiz-passing:
     paths:
       - packages/quiz-passing/dist/
 
+build dashboard:
+  stage: build
+  before_script:
+    - yarn install --frozen-lockfile
+  script: yarn build:dashboard
+  artifacts:
+    when: always
+    paths:
+      - packages/dashboard/dist/
+
 deploy apps:
   image: ubuntu:latest
   stage: deploy
@@ -65,3 +75,4 @@ deploy apps:
     - chmod 700 ~/.ssh
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/quiz-passing/dist/ devops@158.160.65.245:/var/www/quiz-passing
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/visitor-portal/dist/ devops@158.160.65.245:/var/www/visitor-portal
+    - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/dashboard/dist/ devops@158.160.65.245:/var/www/dashboard

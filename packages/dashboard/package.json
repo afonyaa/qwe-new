@@ -1,0 +1,26 @@
+{
+  "name": "@quiz-web-engine/dashboard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint:eslint": "eslint . --ext ts,tsx --max-warnings 0",
+    "lint:types": "tsc",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@quiz-web-engine/eslint-config": "1.0.0",
+    "@quiz-web-engine/ts-config": "1.0.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "typescript": "5.2.2",
+    "vite": "^4.4.5"
+  }
+}

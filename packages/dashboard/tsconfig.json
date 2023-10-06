@@ -1,0 +1,4 @@
+{
+  "extends": "@quiz-web-engine/ts-config/base.json",
+  "include": ["src"]
+}

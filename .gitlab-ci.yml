@@ -61,6 +61,7 @@ build dashboard:
     paths:
       - packages/dashboard/dist/
 
+
 deploy apps:
   image: ubuntu:latest
   stage: deploy

@@ -10,7 +10,6 @@ cache:
   paths:
     - .yarn/cache
 
-
 eslint:
   stage: lint
   before_script:
@@ -56,7 +55,8 @@ deploy apps:
   image: ubuntu:latest
   stage: deploy
   needs:
-    - build-visitor-portal
+    - build visitor-portal
+    - build quiz-passing
   script:
     - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
     - eval $(ssh-agent -s)

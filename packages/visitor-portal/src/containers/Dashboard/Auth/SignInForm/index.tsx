@@ -26,6 +26,11 @@ export const SignInForm: FC<SignInFormProps> = ({ onSwitchToSignUp }) => {
       >
         Sign in
       </button>
+      <button className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-gray-900 rounded-md group  bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500">
+        <span className="w-[100%] relative hover:text-white transition-all py-1 px-1 text-xs ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+          Or with Innopolis University SSO
+        </span>
+      </button>
       <div>
         <span className="text-xs">Do not have an account?</span>
         <button

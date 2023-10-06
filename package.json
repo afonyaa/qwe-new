@@ -3,14 +3,21 @@
   "packageManager": "yarn@3.6.3",
   "license": "mit",
   "scripts": {
-    "start:visitor-portal": "",
-    "start:app": ""
+    "lint:eslint": "eslint packages/*",
+    "check:format": "prettier packages/* --check",
+    "lint:types:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing lint:types",
+    "lint:types:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal lint:types",
+    "lint:types": "yarn run lint:types:quiz-passing && yarn run lint:types:visitor-portal",
+    "lint:format": "prettier packages/* --write",
+    "build:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build",
+    "build:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing build"
   },
   "workspaces": [
     "packages/*",
     "packages/core/*"
   ],
   "devDependencies": {
+    "eslint": "^8.45.0",
     "prettier": "^3.0.3"
   }
 }

@@ -603,21 +603,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@quiz-web-engine/app@workspace:packages/app":
-  version: 0.0.0-use.local
-  resolution: "@quiz-web-engine/app@workspace:packages/app"
-  dependencies:
-    "@quiz-web-engine/eslint-config": 1.0.0
-    "@quiz-web-engine/ts-config": 1.0.0
-    "@types/react": ^18.2.15
-    "@types/react-dom": ^18.2.7
-    "@vitejs/plugin-react": ^4.0.3
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    vite: ^4.4.5
-  languageName: unknown
-  linkType: soft
-
 "@quiz-web-engine/eslint-config@1.0.0, @quiz-web-engine/eslint-config@workspace:packages/core/eslint-config":
   version: 0.0.0-use.local
   resolution: "@quiz-web-engine/eslint-config@workspace:packages/core/eslint-config"
@@ -627,6 +612,22 @@ __metadata:
     eslint: ^8.45.0
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-react-refresh: ^0.4.3
+  languageName: unknown
+  linkType: soft
+
+"@quiz-web-engine/quiz-passing@workspace:packages/quiz-passing":
+  version: 0.0.0-use.local
+  resolution: "@quiz-web-engine/quiz-passing@workspace:packages/quiz-passing"
+  dependencies:
+    "@quiz-web-engine/eslint-config": 1.0.0
+    "@quiz-web-engine/ts-config": 1.0.0
+    "@types/react": ^18.2.15
+    "@types/react-dom": ^18.2.7
+    "@vitejs/plugin-react": ^4.0.3
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    typescript: 5.2.2
+    vite: ^4.4.5
   languageName: unknown
   linkType: soft
 
@@ -653,6 +654,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     tailwindcss: ^3.3.3
+    typescript: 5.2.2
     vite: ^4.4.5
   languageName: unknown
   linkType: soft
@@ -2882,6 +2884,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "quiz-web-engine@workspace:."
   dependencies:
+    eslint: ^8.45.0
     prettier: ^3.0.3
   languageName: unknown
   linkType: soft

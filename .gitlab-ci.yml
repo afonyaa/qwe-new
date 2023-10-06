@@ -1,0 +1,67 @@
+image: node:18.12.1-alpine
+
+stages:
+  - lint
+  - build
+  - deploy
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - .yarn/cache
+
+eslint:
+  stage: lint
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - yarn lint:eslint
+
+check format:
+  stage: lint
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - yarn check:format
+
+types:
+  stage: lint
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - yarn lint:types
+
+build visitor-portal:
+  stage: build
+  before_script:
+    - yarn install --frozen-lockfile
+  script: yarn build:visitor-portal
+  artifacts:
+    when: always
+    paths:
+      - packages/visitor-portal/dist/
+
+build quiz-passing:
+  stage: build
+  before_script:
+    - yarn install --frozen-lockfile
+  script: yarn build:quiz-passing
+  artifacts:
+    when: always
+    paths:
+      - packages/quiz-passing/dist/
+
+deploy apps:
+  image: ubuntu:latest
+  stage: deploy
+  needs:
+    - build visitor-portal
+    - build quiz-passing
+  script:
+    - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/quiz-passing/dist/ devops@158.160.65.245:/var/www/quiz-passing
+    - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/visitor-portal/dist/ devops@158.160.65.245:/var/www/visitor-portal

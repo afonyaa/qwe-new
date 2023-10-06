@@ -615,9 +615,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@quiz-web-engine/student@workspace:packages/student":
+"@quiz-web-engine/quiz-passing@workspace:packages/quiz-passing":
   version: 0.0.0-use.local
-  resolution: "@quiz-web-engine/student@workspace:packages/student"
+  resolution: "@quiz-web-engine/quiz-passing@workspace:packages/quiz-passing"
   dependencies:
     "@quiz-web-engine/eslint-config": 1.0.0
     "@quiz-web-engine/ts-config": 1.0.0

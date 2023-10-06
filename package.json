@@ -5,11 +5,12 @@
   "scripts": {
     "lint:eslint": "eslint packages/*",
     "check:format": "prettier packages/* --check",
-    "lint:types:student": "yarn workspace @quiz-web-engine/student lint:types",
+    "lint:types:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing lint:types",
     "lint:types:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal lint:types",
-    "lint:types": "yarn run lint:types:student && yarn run lint:types:visitor-portal",
+    "lint:types": "yarn run lint:types:quiz-passing && yarn run lint:types:visitor-portal",
     "lint:format": "prettier packages/* --write",
-    "build:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build"
+    "build:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build",
+    "build:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing build"
   },
   "workspaces": [
     "packages/*",

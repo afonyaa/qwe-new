@@ -603,6 +603,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@quiz-web-engine/dashboard@workspace:packages/dashboard":
+  version: 0.0.0-use.local
+  resolution: "@quiz-web-engine/dashboard@workspace:packages/dashboard"
+  dependencies:
+    "@quiz-web-engine/eslint-config": 1.0.0
+    "@quiz-web-engine/ts-config": 1.0.0
+    "@types/react": ^18.2.15
+    "@types/react-dom": ^18.2.7
+    "@vitejs/plugin-react": ^4.0.3
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    typescript: 5.2.2
+    vite: ^4.4.5
+  languageName: unknown
+  linkType: soft
+
 "@quiz-web-engine/eslint-config@1.0.0, @quiz-web-engine/eslint-config@workspace:packages/core/eslint-config":
   version: 0.0.0-use.local
   resolution: "@quiz-web-engine/eslint-config@workspace:packages/core/eslint-config"
@@ -636,6 +652,12 @@ __metadata:
   resolution: "@quiz-web-engine/ts-config@workspace:packages/core/ts-config"
   dependencies:
     typescript: 5.2.2
+  languageName: unknown
+  linkType: soft
+
+"@quiz-web-engine/ui-kit@workspace:packages/core/ui-kit":
+  version: 0.0.0-use.local
+  resolution: "@quiz-web-engine/ui-kit@workspace:packages/core/ui-kit"
   languageName: unknown
   linkType: soft
 

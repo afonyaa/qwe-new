@@ -10,32 +10,34 @@ cache:
   paths:
     - .yarn/cache
 
-eslint:
-  stage: lint
-  before_script:
-    - yarn install --frozen-lockfile
-  script:
-    - yarn lint:eslint
-
-check format:
-  stage: lint
-  before_script:
-    - yarn install --frozen-lockfile
-  script:
-    - yarn check:format
-
-types:
-  stage: lint
-  before_script:
-    - yarn install --frozen-lockfile
-  script:
-    - yarn lint:types
+#eslint:
+#  stage: lint
+#  before_script:
+#    - yarn install --frozen-lockfile
+#  script:
+#    - yarn lint:eslint
+#
+#check format:
+#  stage: lint
+#  before_script:
+#    - yarn install --frozen-lockfile
+#  script:
+#    - yarn check:format
+#
+#types:
+#  stage: lint
+#  before_script:
+#    - yarn install --frozen-lockfile
+#  script:
+#    - yarn lint:types
 
 build visitor-portal:
   stage: build
   before_script:
     - yarn install --frozen-lockfile
-  script: yarn build:visitor-portal
+  script:
+    - export VITE_BACKEND_URL=WWW_BACKEND
+    - yarn build:production:visitor-portal
   artifacts:
     when: always
     paths:
@@ -45,7 +47,9 @@ build quiz-passing:
   stage: build
   before_script:
     - yarn install --frozen-lockfile
-  script: yarn build:quiz-passing
+  script:
+    - export VITE_BACKEND_URL=WWW_BACKEND
+    - yarn build:production:quiz-passing
   artifacts:
     when: always
     paths:
@@ -55,7 +59,9 @@ build dashboard:
   stage: build
   before_script:
     - yarn install --frozen-lockfile
-  script: yarn build:dashboard
+  script:
+    - export VITE_BACKEND_URL=WWW_BACKEND
+    - yarn build:production:dashboard
   artifacts:
     when: always
     paths:

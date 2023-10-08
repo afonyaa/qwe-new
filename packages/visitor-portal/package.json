@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "dotenv -e ../../.env.development.local -- vite",
-    "build": "vite build",
+    "build:production": "vite build",
     "lint:types": "tsc",
     "lint:eslint": "eslint . --ext ts,tsx --max-warnings 0",
     "preview": "vite preview"

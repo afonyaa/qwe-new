@@ -35,7 +35,9 @@ build visitor-portal:
   stage: build
   before_script:
     - yarn install --frozen-lockfile
-  script: yarn build:visitor-portal
+  script:
+    - export VITE_BACKEND_URL=WWW_BACKEND
+    - yarn build:production:visitor-portal
   artifacts:
     when: always
     paths:
@@ -45,11 +47,25 @@ build quiz-passing:
   stage: build
   before_script:
     - yarn install --frozen-lockfile
-  script: yarn build:quiz-passing
+  script:
+    - export VITE_BACKEND_URL=WWW_BACKEND
+    - yarn build:production:quiz-passing
   artifacts:
     when: always
     paths:
       - packages/quiz-passing/dist/
+
+build dashboard:
+  stage: build
+  before_script:
+    - yarn install --frozen-lockfile
+  script:
+    - export VITE_BACKEND_URL=WWW_BACKEND
+    - yarn build:production:dashboard
+  artifacts:
+    when: always
+    paths:
+      - packages/dashboard/dist/
 
 deploy apps:
   image: ubuntu:latest
@@ -57,6 +73,7 @@ deploy apps:
   needs:
     - build visitor-portal
     - build quiz-passing
+    - build dashboard
   script:
     - apt-get update -qq && apt-get install --reinstall -qqy openssh-client && apt-get -qqy install rsync
     - eval $(ssh-agent -s)
@@ -65,3 +82,4 @@ deploy apps:
     - chmod 700 ~/.ssh
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/quiz-passing/dist/ devops@158.160.65.245:/var/www/quiz-passing
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/visitor-portal/dist/ devops@158.160.65.245:/var/www/visitor-portal
+    - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/dashboard/dist/ devops@158.160.65.245:/var/www/dashboard

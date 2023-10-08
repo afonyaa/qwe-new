@@ -7,16 +7,22 @@
     "check:format": "prettier packages/* --check",
     "lint:types:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing lint:types",
     "lint:types:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal lint:types",
-    "lint:types": "yarn run lint:types:quiz-passing && yarn run lint:types:visitor-portal",
+    "lint:types:dashboard": "yarn workspace @quiz-web-engine/dashboard lint:types",
+    "lint:types": "yarn run lint:types:quiz-passing && yarn run lint:types:visitor-portal && yarn run lint:types:dashboard",
     "lint:format": "prettier packages/* --write",
-    "build:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build",
-    "build:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing build"
+    "build:production:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build:production",
+    "build:production:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing build:production",
+    "build:production:dashboard": "yarn workspace @quiz-web-engine/dashboard build:production",
+    "dev": "concurrently \"yarn workspace @quiz-web-engine/visitor-portal dev\" \"yarn workspace @quiz-web-engine/dashboard dev\" \"yarn workspace @quiz-web-engine/quiz-passing dev\""
   },
   "workspaces": [
     "packages/*",
     "packages/core/*"
   ],
   "devDependencies": {
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8.45.0",
     "prettier": "^3.0.3"
   }

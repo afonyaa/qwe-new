@@ -2,6 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
+import { config } from 'dotenv';
+config({ path: resolve(__dirname, '../../.env.development.local') });
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -14,5 +17,8 @@ export default defineConfig({
       '@hooks': resolve(__dirname, './src/hooks'),
       '@utils': resolve(__dirname, './src/utils'),
     },
+  },
+  server: {
+    port: Number(process.env.DASHBOARD_PORT),
   },
 });

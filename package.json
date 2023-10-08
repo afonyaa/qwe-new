@@ -12,13 +12,16 @@
     "lint:format": "prettier packages/* --write",
     "build:visitor-portal": "yarn workspace @quiz-web-engine/visitor-portal build",
     "build:quiz-passing": "yarn workspace @quiz-web-engine/quiz-passing build",
-    "build:dashboard": "yarn workspace @quiz-web-engine/dashboard build"
+    "build:dashboard": "yarn workspace @quiz-web-engine/dashboard build",
+    "dev": "concurrently \"yarn workspace @quiz-web-engine/visitor-portal dev\" \"yarn workspace @quiz-web-engine/dashboard dev\" \"yarn workspace @quiz-web-engine/quiz-passing dev\""
   },
   "workspaces": [
     "packages/*",
     "packages/core/*"
   ],
   "devDependencies": {
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.3.1",
     "eslint": "^8.45.0",
     "prettier": "^3.0.3"
   }

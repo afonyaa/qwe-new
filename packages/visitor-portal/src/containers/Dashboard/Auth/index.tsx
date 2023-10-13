@@ -15,9 +15,18 @@ export const Auth: FC = () => {
     setAuthStateAction(AuthStateAction.SigningUp);
   };
 
+  const handleSignUpFormSubmit = () => {};
+  const handleSignInFormSubmit = () => {};
+
   return authStateAction === AuthStateAction.SigningUp ? (
-    <SignUpForm onSwitchToSignIn={handleSwitchToSignIn} />
+    <SignUpForm
+      onSwitchToSignIn={handleSwitchToSignIn}
+      onSubmit={handleSignUpFormSubmit}
+    />
   ) : (
-    <SignInForm onSwitchToSignUp={handleSwitchToSignUp} />
+    <SignInForm
+      onSwitchToSignUp={handleSwitchToSignUp}
+      onSubmit={handleSignInFormSubmit}
+    />
   );
 };

@@ -1,5 +1,6 @@
-import { AuthStateSwitcher } from '../interfaces';
+import { AuthStateSwitcher, SignUpSubmitCB } from '../interfaces';
 
 export interface SignUpFormProps {
   onSwitchToSignIn: AuthStateSwitcher;
+  onSubmit: SignUpSubmitCB;
 }

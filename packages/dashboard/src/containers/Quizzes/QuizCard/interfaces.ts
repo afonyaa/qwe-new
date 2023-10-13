@@ -1,0 +1,6 @@
+export interface QuizCardProps {
+  quizImage?: string;
+  quizName: string;
+  questionsAmount: number;
+  id: string;
+}

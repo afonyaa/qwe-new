@@ -16,6 +16,8 @@ eslint:
     - yarn install --frozen-lockfile
   script:
     - yarn lint:eslint
+  except:
+    - tags
 
 check format:
   stage: lint
@@ -23,6 +25,8 @@ check format:
     - yarn install --frozen-lockfile
   script:
     - yarn check:format
+  except:
+    - tags
 
 types:
   stage: lint
@@ -30,6 +34,8 @@ types:
     - yarn install --frozen-lockfile
   script:
     - yarn lint:types
+  except:
+    - tags
 
 build visitor-portal:
   stage: build

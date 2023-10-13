@@ -83,7 +83,5 @@ deploy apps:
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/quiz-passing/dist/ devops@158.160.65.245:/var/www/quiz-passing
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/visitor-portal/dist/ devops@158.160.65.245:/var/www/visitor-portal
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/dashboard/dist/ devops@158.160.65.245:/var/www/dashboard
-  rules:
-    - if: $CI_COMMIT_MESSAGE =~ /\[no-deploy\]/
-      when: never
-    - when: always
+  only:
+    - tags

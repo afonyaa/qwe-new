@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Input } from '../../../../components/Input';
 import Label from '../../../../components/Label/Label';
 import { SignUpFormProps } from './interfaces';
@@ -9,11 +9,13 @@ import { useFormFields } from '../hooks/useFormFields';
 export const SignUpForm: FC<SignUpFormProps> = ({
   onSwitchToSignIn,
   onSubmit,
+  loading,
 }) => {
   const { fields, isValid, onFieldChange } = useFormFields<SignUpFields>({
     defaultValues: SIGN_UP_DEFAULT_VALUES,
   });
-  const onClickSubmitButton = () => {
+  const onClickSubmitButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     onSubmit(fields);
   };
 
@@ -103,10 +105,10 @@ export const SignUpForm: FC<SignUpFormProps> = ({
       </div>
       <button
         onClick={onClickSubmitButton}
-        disabled={!isValid}
+        disabled={!isValid || loading}
         className="mt-6 bg-indigo-900 text-white opacity-75 text-xs p-2 hover:bg-indigo-600 disabled:bg-slate-500 transition-colors rounded-md"
       >
-        Sign up
+        {loading ? 'Loading...' : 'Sign Up'}
       </button>
       <div>
         <span className="text-xs">Have an account?</span>

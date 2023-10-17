@@ -1,17 +1,17 @@
 import { AuthStateAction, SignInFields, SignUpFields } from '../../interfaces';
 import { useState } from 'react';
+import { authQuery } from './queries/authQuery';
 
 export const useAuth = () => {
   const [loading, setIsLoading] = useState(false);
-
-  const signIn = (
+  const signIn = <T>(
     payload: SignInFields,
-    onCompleted?: (token: string) => void,
+    onCompleted?: (data: T) => void,
   ) => {
     setIsLoading(true);
-    requestAuth(payload, AuthStateAction.SigningIn)
-      .then((token) => {
-        onCompleted?.(token as string);
+    authQuery(payload, AuthStateAction.SigningIn)
+      .then((data) => {
+        onCompleted?.(data as T);
       })
       .catch(() => {})
       .finally(() => {
@@ -21,7 +21,7 @@ export const useAuth = () => {
 
   const signUp = (payload: SignUpFields, onCompleted?: () => void) => {
     setIsLoading(true);
-    requestAuth(payload, AuthStateAction.SigningUp)
+    authQuery(payload, AuthStateAction.SigningUp)
       .then(() => onCompleted?.())
       .catch(() => {})
       .finally(() => {
@@ -30,35 +30,4 @@ export const useAuth = () => {
   };
 
   return { signIn, signUp, loading };
-};
-
-const requestAuth = (
-  payload: SignInFields | SignUpFields,
-  type: AuthStateAction,
-) => {
-  return new Promise((resolve, reject) => {
-    const authTypeSegments = {
-      [AuthStateAction.SigningUp]: 'signup',
-      [AuthStateAction.SigningIn]: 'signin',
-    };
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/auth/${authTypeSegments[type]}`,
-      {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-      },
-    )
-      .then((res) => {
-        if (!res.ok) {
-          reject(`HTTP ${res.statusText} error occurred`);
-        } else res.json().then((data) => resolve(data.token));
-      })
-      .catch((e) => {
-        reject(`Unknown error, please try later ${e.message}`);
-      });
-  });
 };

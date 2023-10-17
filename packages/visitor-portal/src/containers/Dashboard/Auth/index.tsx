@@ -6,10 +6,10 @@ import { useAuth } from './hooks/useAuth';
 import { RedirectionContext } from '../../../modules/RedirectionProvider/RedirectionContext';
 
 export const Auth: FC = () => {
-  const { saveToken } = useContext(RedirectionContext);
   const [authStateAction, setAuthStateAction] = useState(
     AuthStateAction.SigningIn,
   );
+  const { setCookie } = useContext(RedirectionContext);
 
   const { signIn, signUp, loading } = useAuth();
 
@@ -24,7 +24,7 @@ export const Auth: FC = () => {
     signUp(payload, handleSwitchToSignInForm);
   };
   const handleSignInFormSubmit = (payload: SignInFields) => {
-    signIn(payload, saveToken);
+    signIn<string>(payload, setCookie);
   };
 
   return authStateAction === AuthStateAction.SigningUp ? (

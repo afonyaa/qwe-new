@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: Number(process.env.QUIZ_PASSING_PORT),
+    port: Number(process.env.QUIZ_PASSING_DEV_PORT),
   },
 });

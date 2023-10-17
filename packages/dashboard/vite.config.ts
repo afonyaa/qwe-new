@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -18,10 +17,8 @@ export default defineConfig({
   server: {
     port: Number(process.env.DASHBOARD_PORT),
     proxy: {
-      // When you make requests to /api/* from your client,
-      // it will proxy the request to the target specified below
       '/api': {
-        target: 'https://quiz-web-engine-7ffab586accc.herokuapp.com/',
+        target: `${process.env.VITE_BACKEND_URL}/`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

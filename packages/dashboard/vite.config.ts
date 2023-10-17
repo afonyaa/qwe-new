@@ -15,7 +15,8 @@ export default defineConfig({
     },
   },
   server: {
-    port: Number(process.env.DASHBOARD_PORT),
+    host: process.env.DASHBOARD_DEV_HOST,
+    port: Number(process.env.DASHBOARD_DEV_PORT),
     proxy: {
       '/api': {
         target: `${process.env.VITE_BACKEND_URL}/`,

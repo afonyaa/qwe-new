@@ -42,7 +42,7 @@ build visitor-portal:
   before_script:
     - yarn install --frozen-lockfile
   script:
-    - export VITE_BACKEND_URL=WWW_BACKEND
+    - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - yarn build:production:visitor-portal
   artifacts:
     when: always
@@ -54,7 +54,7 @@ build quiz-passing:
   before_script:
     - yarn install --frozen-lockfile
   script:
-    - export VITE_BACKEND_URL=WWW_BACKEND
+    - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - yarn build:production:quiz-passing
   artifacts:
     when: always
@@ -66,7 +66,7 @@ build dashboard:
   before_script:
     - yarn install --frozen-lockfile
   script:
-    - export VITE_BACKEND_URL=WWW_BACKEND
+    - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - yarn build:production:dashboard
   artifacts:
     when: always

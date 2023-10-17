@@ -8,6 +8,8 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
 }) => {
   const contextValue = {
     setCookie: (cookie: string) => {
+      console.log('COOKIE DOMAIN', COOKIE_DOMAIN);
+      console.log('COOKIE', cookie);
       document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}`;
     },
   };

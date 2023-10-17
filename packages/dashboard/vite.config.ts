@@ -17,5 +17,14 @@ export default defineConfig({
   },
   server: {
     port: Number(process.env.DASHBOARD_PORT),
+    proxy: {
+      // When you make requests to /api/* from your client,
+      // it will proxy the request to the target specified below
+      '/api': {
+        target: 'https://quiz-web-engine-7ffab586accc.herokuapp.com/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
 });

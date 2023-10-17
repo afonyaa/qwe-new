@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react';
-import instance from '@/modules/QueryProvider/axios';
+import axios from '@/modules/QueryProvider/axios';
 
 export const Quizzes: FC = () => {
   const generateQuiz = () => {
-    instance
+    axios
       .post(`quiz/generate`, {})
       .then((res) => {
         console.log(res);

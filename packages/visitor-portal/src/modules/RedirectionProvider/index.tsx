@@ -9,7 +9,7 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
 }) => {
   const contextValue = {
     setCookie: (cookie: string) => {
-      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; SameSite=None; ${SECURE_FLAG}`;
+      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; ${SECURE_FLAG}`;
     },
   };
   useEffect(() => {

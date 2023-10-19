@@ -4,9 +4,12 @@ import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './pages';
 import { QueryProvider } from '@/modules/QueryProvider';
+import { AuthProvider } from '@/modules/AuthProvider';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryProvider>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </QueryProvider>,
 );

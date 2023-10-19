@@ -695,9 +695,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@quiz-web-engine/visitor-portal@workspace:packages/visitor-portal"
   dependencies:
+    "@heroicons/react": ^2.0.18
     "@quiz-web-engine/eslint-config": 1.0.0
     "@quiz-web-engine/ts-config": 1.0.0
     "@tailwindcss/typography": ^0.5.10
+    "@tanstack/react-query": ^4.36.1
     "@types/react": ^18.2.15
     "@types/react-dom": ^18.2.7
     "@vitejs/plugin-react": ^4.0.3

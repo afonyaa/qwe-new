@@ -26,7 +26,6 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
   const shouldShowAuthForms = !isLoading && !data;
   const contextValue = {
     setCookie: (cookie: string) => {
-      console.log(`Authorization=${cookie}; domain=${COOKIE_DOMAIN}; Secure`);
       document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; SameSite=None; Secure`;
       refetch();
     },

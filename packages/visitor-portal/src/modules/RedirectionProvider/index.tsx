@@ -30,7 +30,8 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
         'set cookie',
         `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; ${SECURE_FLAG}`,
       );
-      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; ${SECURE_FLAG}`;
+      // document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; ${SECURE_FLAG}`;
+      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}`;
       refetch();
     },
   };

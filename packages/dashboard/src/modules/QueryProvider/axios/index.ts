@@ -8,7 +8,6 @@ const BACKEND_URL =
 const instance = axios.create({
   baseURL: BACKEND_URL,
   timeout: 5000,
-  withCredentials: true,
 });
 
 export default instance;

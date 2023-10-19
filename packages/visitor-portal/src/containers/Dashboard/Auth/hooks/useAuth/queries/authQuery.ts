@@ -3,7 +3,7 @@ import {
   SignInFields,
   SignUpFields,
 } from '../../../interfaces';
-import axios from '../../../../../../modules/RedirectionProvider/axios';
+import axios from '../../../../../../modules/QueryProvider/axios';
 
 export const authQuery = (
   payload: SignInFields | SignUpFields,

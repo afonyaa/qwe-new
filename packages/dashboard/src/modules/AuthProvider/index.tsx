@@ -5,12 +5,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getCurrentUserQuery } from './queries/getCurrentUserQuery';
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
-  // const {} = useQuery({
-  //   queryKey: ['currentUser'],
-  //   queryFn: getCurrentUserQuery,
-  //   retry: false,
-  //   refetchOnWindowFocus: false,
-  // });
+  const { data } = useQuery({
+    queryKey: ['currentUser'],
+    queryFn: getCurrentUserQuery,
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
 
   return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
 };

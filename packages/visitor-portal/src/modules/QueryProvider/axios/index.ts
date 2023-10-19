@@ -8,7 +8,6 @@ const BACKEND_URL =
 
 const instance = axios.create({
   baseURL: BACKEND_URL,
-  withCredentials: true,
 });
 
 instance.interceptors.request.use(

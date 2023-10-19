@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from '../../RedirectionProvider/utils/getCookie';
 
 const BACKEND_URL =
   import.meta.env.MODE === 'development'
@@ -9,5 +10,15 @@ const instance = axios.create({
   baseURL: BACKEND_URL,
   withCredentials: true,
 });
+
+instance.interceptors.request.use(
+  (config) => {
+    config.headers['Authorization'] = getCookie('Authorization');
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
 export default instance;

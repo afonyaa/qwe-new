@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
+import mkcert from 'vite-plugin-mkcert';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), mkcert()],
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
@@ -16,6 +17,7 @@ export default defineConfig({
     },
   },
   server: {
+    https: true,
     host: process.env.DASHBOARD_DEV_HOST,
     port: Number(process.env.DASHBOARD_DEV_PORT),
     proxy: {

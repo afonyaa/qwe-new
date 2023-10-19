@@ -44,6 +44,7 @@ build visitor-portal:
   script:
     - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - export VITE_COOKIE_DOMAIN=quiz-web-engine.ru
+    - export VITE_DASHBOARD_HOST_PORT=https://dashboard.quiz-web-engine.ru/
     - yarn build:production:visitor-portal
   artifacts:
     when: always
@@ -70,6 +71,7 @@ build dashboard:
   script:
     - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - export VITE_COOKIE_DOMAIN=quiz-web-engine.ru
+    - export VITE_VISITOR_PORTAL_HOST_PORT=https://welcome.quiz-web-engine.ru/
     - yarn build:production:dashboard
   artifacts:
     when: always

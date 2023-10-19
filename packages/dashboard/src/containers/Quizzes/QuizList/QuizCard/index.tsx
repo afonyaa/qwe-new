@@ -9,7 +9,7 @@ export const QuizCard: FC<QuizCardProps> = ({
   questionsAmount,
 }) => {
   return (
-    <div className="flex w-3/5 p-4 border rounded-md justify-between">
+    <div className="flex p-4 border rounded-md justify-between">
       <div className="flex gap-x-2">
         <img
           src={quizImage ?? previewImage}
@@ -25,9 +25,12 @@ export const QuizCard: FC<QuizCardProps> = ({
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex items-start gap-2">
         <div className="text-xs px-3 py-1 text-slate-200 rounded-sm bg-purple-900 opacity-80">
           Edit
+        </div>
+        <div className="text-xs px-3 py-1 text-white rounded-sm bg-red-400 opacity-80">
+          Remove
         </div>
       </div>
     </div>

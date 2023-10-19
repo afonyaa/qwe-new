@@ -1,29 +1,39 @@
 import { RedirectionContext } from './RedirectionContext';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { RedirectionProviderProps } from './interfaces';
 import { COOKIE_DOMAIN, SECURE_FLAG } from './constants';
-import axios from './axios';
+import { useQuery } from '@tanstack/react-query';
+import { checkIsAuthenticatedQuery } from './queries/checkIsAuthenticatedQuery';
+import { Pending } from './Pending';
+import { getSearchParamFromURL } from './utils/getSearchParamFromURL';
 
 export const RedirectionProvider: FC<RedirectionProviderProps> = ({
   children,
 }) => {
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ['checkAuthenticated'],
+    queryFn: checkIsAuthenticatedQuery,
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
+
+  if (data) {
+    window.location.href =
+      getSearchParamFromURL('redirect') ??
+      import.meta.env.VITE_DASHBOARD_HOST_PORT;
+  }
+
+  const shouldShowAuthForms = !isLoading && !data;
   const contextValue = {
     setCookie: (cookie: string) => {
       document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; ${SECURE_FLAG}`;
+      refetch();
     },
   };
-  useEffect(() => {
-    axios
-      .get('api/user/')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <RedirectionContext.Provider value={contextValue}>
-      {children}
+      {shouldShowAuthForms ? children : <Pending />}
     </RedirectionContext.Provider>
   );
 };

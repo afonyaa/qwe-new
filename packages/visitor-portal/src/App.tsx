@@ -1,11 +1,14 @@
 import { Dashboard } from './containers/Dashboard';
 import { RedirectionProvider } from './modules/RedirectionProvider';
+import { QueryProvider } from './modules/QueryProvider';
 
 const App = () => {
   return (
-    <RedirectionProvider>
-      <Dashboard />
-    </RedirectionProvider>
+    <QueryProvider>
+      <RedirectionProvider>
+        <Dashboard />
+      </RedirectionProvider>
+    </QueryProvider>
   );
 };
 

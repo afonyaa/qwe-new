@@ -1,20 +1,13 @@
-import React, { FC, useEffect } from 'react';
-import axios from '@/modules/QueryProvider/axios';
+import React, { FC } from 'react';
+import { QuizList } from '@containers/Quizzes/QuizList';
 
 export const Quizzes: FC = () => {
-  const generateQuiz = () => {
-    axios
-      .post(`quiz/generate`, {})
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    generateQuiz();
-  }, []);
-  return <div></div>;
+  return (
+    <div className="flex flex-wrap h-full overflow-hidden">
+      <div className="flex-grow h-full w-1/2  p-2">
+        <QuizList />
+      </div>
+      <div className="flex-grow h-full w-1/2 p-2"></div>
+    </div>
+  );
 };

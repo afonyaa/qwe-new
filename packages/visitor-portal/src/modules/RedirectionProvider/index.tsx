@@ -1,7 +1,7 @@
 import { RedirectionContext } from './RedirectionContext';
 import { FC } from 'react';
 import { RedirectionProviderProps } from './interfaces';
-import { COOKIE_DOMAIN, SECURE_FLAG } from './constants';
+import { COOKIE_DOMAIN } from './constants';
 import { useQuery } from '@tanstack/react-query';
 import { checkIsAuthenticatedQuery } from './queries/checkIsAuthenticatedQuery';
 import { Pending } from './Pending';
@@ -26,7 +26,8 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
   const shouldShowAuthForms = !isLoading && !data;
   const contextValue = {
     setCookie: (cookie: string) => {
-      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}`;
+      console.log(`Authorization=${cookie}; domain=${COOKIE_DOMAIN}; Secure`);
+      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; SameSite=None; Secure`;
       refetch();
     },
   };

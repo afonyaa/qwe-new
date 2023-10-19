@@ -18,15 +18,15 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
   });
 
   if (data) {
-    window.location.href =
-      getSearchParamFromURL('redirect') ??
-      import.meta.env.VITE_DASHBOARD_HOST_PORT;
+    // window.location.href =
+    //   getSearchParamFromURL('redirect') ??
+    //   import.meta.env.VITE_DASHBOARD_HOST_PORT;
   }
 
   const shouldShowAuthForms = !isLoading && !data;
   const contextValue = {
     setCookie: (cookie: string) => {
-      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; ${SECURE_FLAG}`;
+      document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}`;
       refetch();
     },
   };

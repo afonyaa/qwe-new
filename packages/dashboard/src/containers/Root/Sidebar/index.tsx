@@ -8,7 +8,7 @@ import {
   UserGroupIcon,
   WrenchIcon,
 } from '@heroicons/react/20/solid';
-import { RootPagesPaths } from '@/pages/constants';
+import { RootPagesPaths } from '@pages/constants';
 
 export const Sidebar: FC = () => {
   return (

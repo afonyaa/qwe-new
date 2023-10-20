@@ -6,6 +6,8 @@
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/containers/*"],
       "@modules/*": ["./src/modules/*"],
+      "@coreTypes/*": ["./src/types/*"],
+      "@pages/*": ["./src/pages/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"]
     }

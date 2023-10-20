@@ -2,36 +2,42 @@ import previewImage from './mocks/assets/quiz-img-preview.png';
 import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon';
 import { FC } from 'react';
 import { QuizCardProps } from './interfaces';
+import { useNavigate } from 'react-router-dom';
+import { RootPagesPaths } from '@pages/constants';
 
 export const QuizCard: FC<QuizCardProps> = ({
   quizName,
   quizImage,
   questionsAmount,
+  id,
 }) => {
+  const navigate = useNavigate();
+  const redirectToQuiz = () => {
+    navigate(`${RootPagesPaths.quizzes}/${id}`);
+  };
+
   return (
     <div className="flex p-4 border rounded-md justify-between">
       <div className="flex gap-x-2">
-        <img
-          src={quizImage ?? previewImage}
-          width={60}
-          height={60}
-          className="rounded-md"
-        />
+        <img src={quizImage ?? previewImage} className="rounded-md w-16 h-16" />
         <div className="flex flex-col justify-between ml-2">
-          <h1 className="font-semibold">{quizName}</h1>
-          <div className="text-xs bg-gray-100 text-slate-600 p-1 flex gap-x-1 px-2">
+          <h1 className="font-semibold text-slate-500">{quizName}</h1>
+          <span className="badge badge-square w-fit badge-xs bg-gray-100 text-slate-400 border-gray-200 mt-1">
             <ListBulletIcon height={16} />
-            <span>{questionsAmount} question</span>
-          </div>
+            <span className="ml-1">{questionsAmount} questions</span>
+          </span>
         </div>
       </div>
       <div className="flex items-start gap-2">
-        <div className="text-xs px-3 py-1 text-slate-200 rounded-sm bg-purple-900 opacity-80">
+        <span
+          className="badge badge-secondary badge-xs px-2 click cursor-pointer hover:bg-purple-800 transition-colors"
+          onClick={redirectToQuiz}
+        >
           Edit
-        </div>
-        <div className="text-xs px-3 py-1 text-white rounded-sm bg-red-400 opacity-80">
+        </span>
+        <span className="badge badge-outline-error badge-xs px-2 cursor-pointer">
           Remove
-        </div>
+        </span>
       </div>
     </div>
   );

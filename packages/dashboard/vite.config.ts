@@ -14,6 +14,7 @@ export default defineConfig({
       '@modules': resolve(__dirname, './src/modules'),
       '@hooks': resolve(__dirname, './src/hooks'),
       '@utils': resolve(__dirname, './src/utils'),
+      '@coreTypes': resolve(__dirname, './src/types'),
     },
   },
   server: {

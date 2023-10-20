@@ -1,5 +1,5 @@
 import axios from '@modules/QueryProvider/axios';
-import {QuizPreview} from '@/types/quriesModels/QuizPreview';
+import { QuizPreview } from '@/types/quriesModels/QuizPreview';
 
 export const getQuizListQuery = (): Promise<QuizPreview[]> => {
   return axios

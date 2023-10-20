@@ -16,6 +16,8 @@ eslint:
     - yarn install --frozen-lockfile
   script:
     - yarn lint:eslint
+  except:
+    - tags
 
 check format:
   stage: lint
@@ -23,6 +25,8 @@ check format:
     - yarn install --frozen-lockfile
   script:
     - yarn check:format
+  except:
+    - tags
 
 types:
   stage: lint
@@ -30,13 +34,17 @@ types:
     - yarn install --frozen-lockfile
   script:
     - yarn lint:types
+  except:
+    - tags
 
 build visitor-portal:
   stage: build
   before_script:
     - yarn install --frozen-lockfile
   script:
-    - export VITE_BACKEND_URL=WWW_BACKEND
+    - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
+    - export VITE_COOKIE_DOMAIN=.quiz-web-engine.ru
+    - export VITE_DASHBOARD_HOST_PORT=https://dashboard.quiz-web-engine.ru/
     - yarn build:production:visitor-portal
   artifacts:
     when: always
@@ -48,7 +56,8 @@ build quiz-passing:
   before_script:
     - yarn install --frozen-lockfile
   script:
-    - export VITE_BACKEND_URL=WWW_BACKEND
+    - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
+    - export VITE_COOKIE_DOMAIN=.quiz-web-engine.ru
     - yarn build:production:quiz-passing
   artifacts:
     when: always
@@ -60,7 +69,9 @@ build dashboard:
   before_script:
     - yarn install --frozen-lockfile
   script:
-    - export VITE_BACKEND_URL=WWW_BACKEND
+    - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
+    - export VITE_COOKIE_DOMAIN=.quiz-web-engine.ru
+    - export VITE_VISITOR_PORTAL_HOST_PORT=https://welcome.quiz-web-engine.ru/
     - yarn build:production:dashboard
   artifacts:
     when: always
@@ -83,3 +94,5 @@ deploy apps:
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/quiz-passing/dist/ devops@158.160.65.245:/var/www/quiz-passing
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/visitor-portal/dist/ devops@158.160.65.245:/var/www/visitor-portal
     - rsync -avz -e "ssh -o StrictHostKeyChecking=no" packages/dashboard/dist/ devops@158.160.65.245:/var/www/dashboard
+  only:
+    - tags

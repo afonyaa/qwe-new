@@ -5,5 +5,7 @@ export const getCurrentUserQuery = (): Promise<User> => {
   return axios
     .get('api/user/')
     .then((response) => response.data)
-    .catch((e) => e);
+    .catch((e) => {
+      throw new Error(e);
+    });
 };

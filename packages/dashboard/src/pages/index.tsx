@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Root } from '@containers/Root';
-import { ClassesPage } from '@/pages/classes';
-import { RootPagesPaths } from '@/pages/constants';
-import { QuizzesPage } from '@/pages/quizzes';
-import { DashboardPage } from '@/pages/dashboard';
-import { ProfileSettingsPage } from '@/pages/profileSettings';
+import { ClassesPage } from '@pages/classes';
+import { RootPagesPaths } from '@pages/constants';
+import { QuizzesPage } from '@pages/quizzes';
+import { DashboardPage } from '@pages/dashboard';
+import { ProfileSettingsPage } from '@pages/profileSettings';
+import { QuizPage } from '@pages/quiz';
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: RootPagesPaths.quizzes,
         element: <QuizzesPage />,
+      },
+      {
+        path: RootPagesPaths.quiz,
+        element: <QuizPage />,
       },
       {
         path: RootPagesPaths.classes,

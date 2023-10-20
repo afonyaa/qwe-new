@@ -1,4 +1,16 @@
 {
   "extends": "@quiz-web-engine/ts-config/base.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@containers/*": ["./src/containers/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@coreTypes/*": ["./src/types/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
+  },
   "include": ["src"]
 }

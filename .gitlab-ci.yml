@@ -58,6 +58,7 @@ build quiz-passing:
   script:
     - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - export VITE_COOKIE_DOMAIN=.quiz-web-engine.ru
+    - export VITE_VISITOR_PORTAL_HOST_PORT=https://welcome.quiz-web-engine.ru/
     - yarn build:production:quiz-passing
   artifacts:
     when: always
@@ -72,6 +73,7 @@ build dashboard:
     - export VITE_BACKEND_URL=https://quiz-web-engine-7ffab586accc.herokuapp.com
     - export VITE_COOKIE_DOMAIN=.quiz-web-engine.ru
     - export VITE_VISITOR_PORTAL_HOST_PORT=https://welcome.quiz-web-engine.ru/
+    - export VITE_QUIZ_PASSING_HOST_PORT=https://game.quiz-web-engine.ru/
     - yarn build:production:dashboard
   artifacts:
     when: always

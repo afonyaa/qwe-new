@@ -9,7 +9,6 @@ export const QuizList: FC<QuizListProps> = ({ quizList, isLoading }) => {
   if (isLoading) {
     return <Skeleton />;
   }
-  quizList = [];
 
   if (quizList?.length === 0) {
     return <NoQuizzes />;

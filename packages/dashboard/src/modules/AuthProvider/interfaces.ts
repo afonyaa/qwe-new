@@ -8,4 +8,5 @@ export interface AuthProviderProps {
 
 export interface AuthContextProps {
   user: Maybe<User>;
+  logout: () => void;
 }

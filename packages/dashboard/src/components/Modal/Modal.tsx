@@ -33,15 +33,15 @@ const Modal: FC<ModalProps> = ({
     <ReactPortal wrapperId={'react-portal-modal-container'}>
       <>
         <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-          <div className="relative w-auto my-6 mx-auto w-[32rem]">
-            <div className="modal-content flex flex-col gap-5">
+          <div className="relative w-auto my-6 mx-auto">
+            <div className="modal-content flex flex-col gap-5 w-[32rem]">
               <label
                 onClick={handleCancel}
                 className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
               >
                 ✕
               </label>
-              <h2 className="text-xl">{titleText}</h2>
+              <h2 className="text-xl mt-4">{titleText}</h2>
               <div className="max-h-[32rem] overflow-y-scroll">
                 <div>{content}</div>
               </div>

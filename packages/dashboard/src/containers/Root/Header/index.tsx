@@ -21,7 +21,7 @@ export const Header: FC = () => {
             <button
               tabIndex={0}
               onClick={logout}
-              className="popover-content popover-bottom-left btn btn-solid-error btn-xs w-16 p-x-3 p-y-2"
+              className="bg-white popover-content popover-bottom-left btn btn-outline-error btn-xs w-16 p-x-3 p-y-2"
             >
               Logout
             </button>

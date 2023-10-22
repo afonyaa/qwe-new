@@ -41,7 +41,7 @@ export const Quizzes: FC = () => {
           quizCount={quizListData?.length}
         />
       </div>
-      <div className="flex-grow h-full py-4">
+      <div className="flex-grow h-full py-4 pb-8">
         <QuizList isLoading={quizListLoading} quizList={quizListData} />
       </div>
       <GenerateQuizModal

@@ -1,7 +1,7 @@
 import { Modal } from '@components/Modal';
 import { FC, useEffect, useState } from 'react';
 import { GenerateQuizModalProps } from './interfaces';
-import { CreateQuizPayload } from '@/types/quriesModels/CreateQuizPayload';
+import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
 import { CREATE_QUIZ_PAYLOAD_INITIAL_VALUES } from '@containers/Quizzes/GenerateQuizModal/constants';
 
 export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
@@ -39,7 +39,9 @@ export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
   };
 
   const canCreate =
-    createQuizPayload.questionCount > 0 && createQuizPayload.topic;
+    createQuizPayload?.questionCount &&
+    createQuizPayload?.questionCount > 0 &&
+    createQuizPayload.topic;
 
   const handleOkButton = () => {
     onSubmit(createQuizPayload);

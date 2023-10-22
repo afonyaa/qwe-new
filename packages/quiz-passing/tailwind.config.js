@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import typography from '@tailwindcss/typography';
 import rippleui from 'rippleui';
 
 export default {

@@ -51,7 +51,7 @@ export const LeaderBoard: FC<LeaderBoardProps> = ({
           </div>
         </div>
       </div>
-      <div className="h-full flex-col w-1/2 flex items-center justify-center">
+      <div className="h-full flex-col w-1/2 px-8 flex items-center justify-center">
         <h1 className="text-2xl font-bold">Leader Board</h1>
         <LeadersTable players={players} />
       </div>

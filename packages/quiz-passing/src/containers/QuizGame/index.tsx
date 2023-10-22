@@ -13,7 +13,7 @@ export const QuizGame: FC<QuizGameProps> = ({ lobbyId }) => {
   const { data, isLoading } = useQuery({
     queryKey: ['quizState', lobbyId],
     queryFn: () => getQuizStateQuery(lobbyId),
-    refetchInterval: 1000,
+    refetchInterval: 10000,
     refetchOnWindowFocus: false,
   });
 

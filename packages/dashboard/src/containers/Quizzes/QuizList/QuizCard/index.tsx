@@ -4,6 +4,8 @@ import { FC } from 'react';
 import { QuizCardProps } from './interfaces';
 import { useNavigate } from 'react-router-dom';
 import { RootPagesPaths } from '@pages/constants';
+import { useMutation } from '@tanstack/react-query';
+import { startQuizQuery } from './queries/startQuizQuery';
 
 export const QuizCard: FC<QuizCardProps> = ({
   quizName,
@@ -12,6 +14,29 @@ export const QuizCard: FC<QuizCardProps> = ({
   id,
 }) => {
   const navigate = useNavigate();
+
+  const { mutate: startMutate, isLoading: isStartLoading } = useMutation({
+    mutationKey: ['startQuiz'],
+    mutationFn: startQuizQuery,
+  });
+
+  const startQuiz = () => {
+    startMutate(
+      { quizId: id },
+      {
+        onSuccess: (lobbyId) => {
+          redirectToLobbyById(lobbyId);
+        },
+      },
+    );
+  };
+
+  const redirectToLobbyById = (lobbyId: string) => {
+    window.location.href = `${
+      import.meta.env.VITE_QUIZ_PASSING_HOST_PORT
+    }/game/${lobbyId}`;
+  };
+
   const redirectToQuiz = () => {
     navigate(`${RootPagesPaths.quizzes}/${id}`);
   };
@@ -21,7 +46,12 @@ export const QuizCard: FC<QuizCardProps> = ({
       <div className="flex gap-x-2">
         <img src={quizImage ?? previewImage} className="rounded-md w-16 h-16" />
         <div className="flex flex-col justify-between ml-2">
-          <h1 className="font-semibold text-slate-500">{quizName}</h1>
+          <h1
+            className="font-semibold text-slate-500 cursor-pointer hover:text-slate-600 transition-colors"
+            onClick={redirectToQuiz}
+          >
+            {quizName}
+          </h1>
           <span className="badge badge-square w-fit badge-xs bg-gray-100 text-slate-400 border-gray-200 mt-1">
             <ListBulletIcon height={16} />
             <span className="ml-1">{questionsAmount} questions</span>
@@ -29,12 +59,16 @@ export const QuizCard: FC<QuizCardProps> = ({
         </div>
       </div>
       <div className="flex items-start gap-2">
-        <span
-          className="badge badge-secondary badge-xs px-2 click cursor-pointer hover:bg-purple-800 transition-colors"
-          onClick={redirectToQuiz}
-        >
-          Edit
-        </span>
+        {isStartLoading ? (
+          <progress className="progress progress-flat-secondary w-12"></progress>
+        ) : (
+          <span
+            onClick={startQuiz}
+            className="badge badge-secondary badge-xs px-2 click cursor-pointer hover:bg-purple-800 transition-colors"
+          >
+            Start Quiz
+          </span>
+        )}
         <span className="badge badge-outline-error badge-xs px-2 cursor-pointer">
           Remove
         </span>

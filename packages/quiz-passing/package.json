@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@quiz-web-engine/fetcher": "1.0.0",
     "@tanstack/react-query": "^4.36.1",
     "axios": "^1.5.1",
     "react": "^18.2.0",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
+    "daisyui": "3.9.3",
     "postcss": "^8.4.30",
     "typescript": "5.2.2",
     "vite": "^4.4.5"

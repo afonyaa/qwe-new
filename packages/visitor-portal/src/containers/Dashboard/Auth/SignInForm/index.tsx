@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import Label from '../../../../components/Label/Label';
 import { Input } from '../../../../components/Input';
 import { SignInFormProps } from './interfaces';
@@ -20,17 +20,34 @@ export const SignInForm: FC<SignInFormProps> = ({
     onSubmit(fields);
   };
 
+  const onEnter = () => {
+    if (isValid) {
+      onSubmit(fields);
+    }
+  };
+
+  const userNameInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    userNameInput.current?.focus();
+  }, []);
+
   return (
     <form
       className="mb-4 w-3/4 sm:w-80 bg-white pt-7 pb-6 px-6 rounded-md shadow-md flex flex-col gap-4"
       onSubmit={(e) => {
         e.preventDefault();
       }}
+      onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          onEnter();
+        }
+      }}
     >
       <h1>Sign up</h1>
       <div className="w-full">
         <Label htmlFor="sign-in-username">Username</Label>
         <Input
+          ref={userNameInput}
           type="text"
           id="sign-in-username"
           name={AuthField.Username}

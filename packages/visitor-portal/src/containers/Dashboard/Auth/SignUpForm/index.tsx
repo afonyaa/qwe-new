@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Input } from '../../../../components/Input';
 import Label from '../../../../components/Label/Label';
 import { SignUpFormProps } from './interfaces';
@@ -18,6 +18,16 @@ export const SignUpForm: FC<SignUpFormProps> = ({
     e.preventDefault();
     onSubmit(fields);
   };
+  const onEnter = () => {
+    if (isValid) {
+      onSubmit(fields);
+    }
+  };
+
+  const userNameInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    userNameInput.current?.focus();
+  }, []);
 
   return (
     <form
@@ -25,12 +35,18 @@ export const SignUpForm: FC<SignUpFormProps> = ({
       onSubmit={(e) => {
         e.preventDefault();
       }}
+      onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          onEnter();
+        }
+      }}
     >
       <h1>Sign up</h1>
       <div className="w-full flex gap-x-2">
         <div className="w-full">
           <Label htmlFor="sign-up-username">Username</Label>
           <Input
+            ref={userNameInput}
             type="text"
             id="sign-up-username"
             name={AuthField.Username}

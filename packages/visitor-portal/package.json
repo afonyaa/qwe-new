@@ -12,21 +12,22 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@quiz-web-engine/fetcher": "1.0.0",
     "@tanstack/react-query": "^4.36.1",
     "axios": "^1.5.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@quiz-web-engine/eslint-config": "1.0.0",
     "@quiz-web-engine/ts-config": "1.0.0",
-    "@tailwindcss/typography": "^0.5.10",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
+    "daisyui": "3.9.3",
     "postcss": "^8.4.30",
+    "tailwindcss": "^3.3.3",
     "typescript": "5.2.2",
     "vite": "^4.4.5"
   }

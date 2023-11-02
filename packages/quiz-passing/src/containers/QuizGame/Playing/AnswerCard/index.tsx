@@ -22,7 +22,7 @@ export const AnswerCard: FC<AnswerCardProps> = ({
 
   const disabledStyles =
     isSubmittedWaitFetch || isSubmitted
-      ? 'cursor-not-allowed bg-purple-5'
+      ? 'cursor-not-allowed bg-base-300'
       : disabled
       ? 'cursor-not-allowed bg-slate-4'
       : 'cursor-pointer bg-slate-800 hover:bg-slate-900';
@@ -33,7 +33,7 @@ export const AnswerCard: FC<AnswerCardProps> = ({
         onAnswerClick(answerId);
         if (!disabled) setIsSubmittedWaitFetch(true);
       }}
-      className={`p-4 rounded-md text-slate-300 transition-colors ${disabledStyles}`}
+      className={`p-4 rounded-md text-accent-content transition-colors ${disabledStyles}`}
     >
       {text}
       <div className={`${orderTWColorMap[order]} h-1 mt-4`}></div>

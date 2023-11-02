@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-export const ProfileSettingsPage: FC = () => {
+const ProfileSettingsPage: FC = () => {
   return <div>Profile Settings</div>;
 };
+
+export default ProfileSettingsPage;

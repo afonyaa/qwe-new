@@ -1,4 +1,4 @@
-import axios from '@modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
 
 export const generateQuizQuery = (

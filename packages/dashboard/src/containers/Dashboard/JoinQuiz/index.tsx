@@ -26,22 +26,24 @@ export const JoinQuiz: FC = () => {
   };
 
   return (
-    <div className="card bg-gray-100">
+    <div className="card w-96 bg-base-200/30 shadow-md">
       <div className="card-body">
-        <h2 className="card-header text-slate-500">Join quiz</h2>
-        <div className="card-footer flex gap-2 mt-4">
+        <h2 className="card-title">Join the quiz</h2>
+        <p>Enter the pin below and join to quiz session</p>
+        <div className="flex gap-6 mt-4">
           <input
-            className="input input-secondary bg-gray-100 text-gray-500 w-64"
+            type="text"
             value={pinCode}
             onChange={(e) => setPinCode(e.target.value)}
-            placeholder="Enter PIN"
+            placeholder="PIN"
+            className="input input-bordered input-secondary w-full max-w-xs focus:outline-none"
           />
           <button
-            disabled={!pinCode}
+            className="btn btn-primary"
+            disabled={!pinCode || isLoading}
             onClick={onClickJoin}
-            className={`btn-secondary btn ${isLoading && 'btn-loading'}`}
           >
-            Play!
+            Join!
           </button>
         </div>
       </div>

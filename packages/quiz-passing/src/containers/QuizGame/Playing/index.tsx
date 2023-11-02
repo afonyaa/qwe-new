@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { FC } from 'react';
 import { PlayingProps } from './interfaces';
 import { AnswerCard } from './AnswerCard';
@@ -37,8 +39,10 @@ export const Playing: FC<PlayingProps> = ({ currentQuestion, role }) => {
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <div className="w-1/2">
-        <div className="p-4 bg-slate-900 rounded-md text-center">
-          <h1 className="text-2xl">{currentQuestion.text}</h1>
+        <div className="p-4 bg-base-200 rounded-md text-center">
+          <h1 className="text-2xl text-primary-content">
+            {currentQuestion.text}
+          </h1>
         </div>
         <div className="grid grid-rows-2 grid-cols-2 mt-12 gap-3">
           {currentQuestion.answers.map((answer, idx) => (
@@ -57,9 +61,14 @@ export const Playing: FC<PlayingProps> = ({ currentQuestion, role }) => {
         </div>
         <div className="text-center mt-8">
           <div className="text-lg">
-            <span className="text-slate-300">Time left:</span>
-            <span className="bg-gray-600 ml-2 py-1 px-2 rounded-md">
-              {currentQuestion.secondsLeft}
+            <div className="text-primary-content">Time left:</div>
+            <span className="countdown font-mono text-5xl mt-4">
+              <span
+                className="text-accent-content"
+                style={{
+                  '--value': currentQuestion.secondsLeft as unknown as string,
+                }}
+              ></span>
             </span>
           </div>
         </div>

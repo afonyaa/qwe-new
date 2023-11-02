@@ -1,4 +1,4 @@
-import axios from '@modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 import { QuizPreview } from '@/types/quriesModels/QuizPreview';
 
 export const getQuizListQuery = (): Promise<QuizPreview[]> => {

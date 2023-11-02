@@ -37,22 +37,24 @@ export const LeaderBoard: FC<LeaderBoardProps> = ({
     <div className="flex h-full w-full flex-wrap">
       <div className="h-full flex-col w-1/2 flex items-center justify-center">
         <div className="ml-16 flex flex-col items-start gap-4">
-          <h1 className="text-xl">
+          <h1 className="text-xl text-primary-content">
             Question: <span className="font-bold">{currentQuestion?.text}</span>
           </h1>
-          <h2 className="text-3xl font-bold mt-4">
+          <h2 className="text-3xl font-bold mt-4 text-accent-content">
             Correct answer:
             <span className="text-green-400 ml-4">{rightAnswer?.text}</span>
           </h2>
           <div>
-            <button onClick={onNextQuestion} className="btn btn-solid-error">
+            <button onClick={onNextQuestion} className="btn">
               Go to next question
             </button>
           </div>
         </div>
       </div>
       <div className="h-full flex-col w-1/2 px-8 flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Leader Board</h1>
+        <h1 className="text-2xl font-bold text-primary-content">
+          Leader Board
+        </h1>
         <LeadersTable players={players} />
       </div>
     </div>

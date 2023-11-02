@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-import typography from '@tailwindcss/typography';
-import rippleui from 'rippleui';
+import daisyui from 'daisyui';
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  plugins: [typography, rippleui],
+  plugins: [daisyui],
+  daisyui: {
+    themes: ['light'],
+  },
 };

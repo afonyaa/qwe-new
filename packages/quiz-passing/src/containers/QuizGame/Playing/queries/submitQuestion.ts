@@ -1,4 +1,4 @@
-import axios from '@modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 import { SubmitQuestionPayload } from '@coreTypes/quriesModels/SubmitQuestionPayload';
 
 export const submitQuestion = (

@@ -11,21 +11,19 @@ export const Header: FC = () => {
           <span className="text-sm font-light text-slate-500">
             {user?.firstname} {user?.lastname}
           </span>
-          <div className="popover cursor-pointer">
-            <img
-              tabIndex={0}
-              className="w-8 h-8 p-1 rounded-full popover-trigger"
-              src={avatar}
-              alt="Bordered avatar"
-            />
-            <button
-              tabIndex={0}
-              onClick={logout}
-              className="bg-white popover-content popover-bottom-left btn btn-outline-error btn-xs w-16 p-x-3 p-y-2"
-            >
-              Logout
-            </button>
-          </div>
+          <img
+            tabIndex={0}
+            className="w-8 h-8 p-1 rounded-full popover-trigger"
+            src={avatar}
+            alt="Bordered avatar"
+          />
+          <button
+            tabIndex={0}
+            onClick={logout}
+            className="bg-white popover-content popover-bottom-left btn btn-outline-error btn-xs w-16 p-x-3 p-y-2"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </header>

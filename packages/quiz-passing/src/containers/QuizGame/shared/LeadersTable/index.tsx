@@ -14,14 +14,14 @@ export const LeadersTable: FC<LeadersTableProps> = ({ players }) => {
 
   return (
     <table className="text-left w-full mt-4 w-[512px]">
-      <thead className="bg-slate-4 flex p-4 justify-center text-white w-full">
+      <thead className="bg-base-200 flex p-4 justify-center text-white w-full">
         <tr className="flex w-full">
           <th className=" w-1/2">Player</th>
           <th className=" w-1/2">Score</th>
         </tr>
       </thead>
       <tbody
-        className="flex bg-slate-6  flex-col items-center overflow-y-scroll w-full"
+        className="flex bg-base-300  flex-col items-center overflow-y-auto w-full"
         style={{ height: 512 }}
       >
         {players.map((player, index) => (

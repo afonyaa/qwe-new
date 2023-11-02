@@ -1,4 +1,4 @@
-import axios from '@modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 import { QuizState } from '@coreTypes/quriesModels/QuizState';
 
 export const getQuizStateQuery = (lobbyId: string): Promise<QuizState> => {

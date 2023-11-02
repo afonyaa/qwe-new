@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-export const ClassesPage: FC = () => {
+const ClassesPage: FC = () => {
   return <div>classes</div>;
 };
+
+export default ClassesPage;

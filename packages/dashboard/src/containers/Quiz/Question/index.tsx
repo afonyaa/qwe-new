@@ -9,11 +9,12 @@ export const Question: FC<QuestionProps> = ({ data }) => {
         {data.answers.map((answer) => (
           <div className="text-slate-700 flex items-center gap-2">
             <span
-              className={`dot ${
-                answer.rightAnswer ? 'dot-success' : 'dot-error'
+              className={`${
+                answer.rightAnswer ? 'text-success' : 'text-error'
               }`}
-            />
-            <span>{answer.answerText}</span>
+            >
+              {answer.answerText}
+            </span>
           </div>
         ))}
       </div>

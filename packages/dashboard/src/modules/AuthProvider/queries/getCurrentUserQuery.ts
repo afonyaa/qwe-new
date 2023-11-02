@@ -1,4 +1,4 @@
-import axios from '@modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 import { User } from '@coreTypes/quriesModels/User';
 
 export const getCurrentUserQuery = (): Promise<User> => {

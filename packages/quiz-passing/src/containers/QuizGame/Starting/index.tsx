@@ -35,22 +35,24 @@ export const Starting: FC<StartingProps> = ({
   return (
     <div className="h-full flex items-center justify-center">
       <div className="h-96 flex">
-        <div className="card rounded-none rounded-l-xl">
+        <div className="card rounded-none bg-base-100 rounded-l-xl">
           <div className="card-body">
-            <h2 className="card-header">The quiz has not been started yet</h2>
+            <h2 className="card-title text-primary-content">
+              The quiz has not been started yet
+            </h2>
             <p className="text-content2 mt-4">
               Please, copy the PIN code below and share it with others
             </p>
             <div className="card-footer mt-8 flex justify-center">
-              <span className="p-2 bg-slate-900 text-2xl rounded-md px-4 mt-8">
+              <span className="p-2 bg-primary-focus text-primary-content text-2xl rounded-md px-4 mt-8">
                 {pinCode}
               </span>
             </div>
           </div>
         </div>
-        <div className="card rounded-none rounded-r-xl bg-gray-700">
+        <div className="card rounded-none rounded-r-xl bg-neutral">
           <div className="card-body">
-            <h2 className="card-header text-white">
+            <h2 className="card-title text-primary-content">
               Peoples in Room
               <span
                 className={`badge ${

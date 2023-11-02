@@ -15,7 +15,7 @@ export const Quiz: FC<QuizProps> = ({ id }) => {
     <>
       {isLoading ? (
         <div className="flex items-center justify-center w-full h-full">
-          <div className="spinner-dot-intermittent [--spinner-color:var(--pink-8)]"></div>
+          <span className="loading loading-ring loading-lg text-primary"></span>
         </div>
       ) : (
         <div className="h-full flex flex-col">

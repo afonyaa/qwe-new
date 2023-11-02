@@ -15,7 +15,7 @@ export const QuizList: FC<QuizListProps> = ({ quizList, isLoading }) => {
   }
 
   return (
-    <div className="flex flex-col w-1/2 h-full gap-y-2 overflow-y-auto pr-4">
+    <div className="flex flex-col w-2/3 h-full gap-y-2 overflow-y-auto pr-4">
       {quizList?.map((quiz) => (
         <QuizCard
           quizName={quiz.name}

@@ -1,11 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Root } from '@containers/Root';
-import { ClassesPage } from '@pages/classes';
 import { RootPagesPaths } from '@pages/constants';
-import { QuizzesPage } from '@pages/quizzes';
-import { DashboardPage } from '@pages/dashboard';
-import { ProfileSettingsPage } from '@pages/profileSettings';
-import { QuizPage } from '@pages/quiz';
+import React, { Suspense } from 'react';
+
+const DashboardPage = React.lazy(() => import('./dashboard'));
+const QuizzesPage = React.lazy(() => import('./quizzes'));
+const QuizPage = React.lazy(() => import('./quiz'));
+const ClassesPage = React.lazy(() => import('./classes'));
+const ProfileSettingsPage = React.lazy(() => import('./profileSettings'));
 
 export const router = createBrowserRouter([
   {
@@ -14,23 +16,43 @@ export const router = createBrowserRouter([
       {
         index: true,
         path: RootPagesPaths.dashboard,
-        element: <DashboardPage />,
+        element: (
+          <Suspense>
+            <DashboardPage />
+          </Suspense>
+        ),
       },
       {
         path: RootPagesPaths.quizzes,
-        element: <QuizzesPage />,
+        element: (
+          <Suspense>
+            <QuizzesPage />
+          </Suspense>
+        ),
       },
       {
         path: RootPagesPaths.quiz,
-        element: <QuizPage />,
+        element: (
+          <Suspense>
+            <QuizPage />
+          </Suspense>
+        ),
       },
       {
         path: RootPagesPaths.classes,
-        element: <ClassesPage />,
+        element: (
+          <Suspense>
+            <ClassesPage />
+          </Suspense>
+        ),
       },
       {
         path: RootPagesPaths.profileSettings,
-        element: <ProfileSettingsPage />,
+        element: (
+          <Suspense>
+            <ProfileSettingsPage />
+          </Suspense>
+        ),
       },
     ],
   },

@@ -10,7 +10,7 @@ import { getSearchParamFromURL } from './utils/getSearchParamFromURL';
 export const RedirectionProvider: FC<RedirectionProviderProps> = ({
   children,
 }) => {
-  const { data, isLoading, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['checkAuthenticated'],
     queryFn: checkIsAuthenticatedQuery,
     retry: false,
@@ -23,7 +23,8 @@ export const RedirectionProvider: FC<RedirectionProviderProps> = ({
       import.meta.env.VITE_DASHBOARD_HOST_PORT;
   }
 
-  const shouldShowAuthForms = !isLoading && !data;
+  // const shouldShowAuthForms = !isLoading && !data;
+  const shouldShowAuthForms = true;
   const contextValue = {
     setCookie: (cookie: string) => {
       document.cookie = `Authorization=${cookie}; domain=${COOKIE_DOMAIN}; SameSite=None; Secure`;

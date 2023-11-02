@@ -1,4 +1,4 @@
-import axios from '@modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 import { Quiz } from '@coreTypes/quriesModels/Quiz';
 
 export const getQuizQuery = (quizId: string): Promise<Quiz> => {

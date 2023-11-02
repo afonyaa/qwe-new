@@ -2,7 +2,7 @@ import { Modal } from '@components/Modal';
 import { FC, useEffect, useState } from 'react';
 import { GenerateQuizModalProps } from './interfaces';
 import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
-import { CREATE_QUIZ_PAYLOAD_INITIAL_VALUES } from '@containers/Quizzes/GenerateQuizModal/constants';
+import { CREATE_QUIZ_PAYLOAD_INITIAL_VALUES } from './constants';
 
 export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
   isOpen,
@@ -58,7 +58,7 @@ export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
         <div>
           <div className="flex flex-col gap-y-4">
             <textarea
-              className="textarea textarea-solid textarea-block"
+              className="textarea textarea-secondary focus:outline-none"
               placeholder="What will be the quiz about?"
               onChange={(event) => {
                 handleChangeQuizTopicText(event.target.value);
@@ -67,7 +67,7 @@ export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
             />
             <input
               type="number"
-              className="input input-solid w-64"
+              className="input input-bordered w-64 focus:outline-none"
               placeholder="Number of questions?"
               onChange={(event) => {
                 handleChangeQuizTopicQuestionsNumber(

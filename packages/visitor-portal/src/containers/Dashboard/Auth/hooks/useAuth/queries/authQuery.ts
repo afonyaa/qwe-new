@@ -3,7 +3,7 @@ import {
   SignInFields,
   SignUpFields,
 } from '../../../interfaces';
-import axios from '../../../../../../modules/QueryProvider/axios';
+import axios from '@quiz-web-engine/fetcher';
 
 export const authQuery = (
   payload: SignInFields | SignUpFields,

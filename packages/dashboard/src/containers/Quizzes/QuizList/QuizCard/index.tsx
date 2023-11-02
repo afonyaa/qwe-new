@@ -47,12 +47,12 @@ export const QuizCard: FC<QuizCardProps> = ({
         <img src={quizImage ?? previewImage} className="rounded-md w-16 h-16" />
         <div className="flex flex-col justify-between ml-2">
           <h1
-            className="font-semibold text-slate-500 cursor-pointer hover:text-slate-600 transition-colors"
+            className="font-semibold max-w-[24rem] text-slate-500 cursor-pointer hover:text-slate-600 transition-colors"
             onClick={redirectToQuiz}
           >
             {quizName}
           </h1>
-          <span className="badge badge-square w-fit badge-xs bg-gray-100 text-slate-400 border-gray-200 mt-1">
+          <span className="badge p-2 w-fit badge-xs mt-1">
             <ListBulletIcon height={16} />
             <span className="ml-1">{questionsAmount} questions</span>
           </span>
@@ -64,12 +64,12 @@ export const QuizCard: FC<QuizCardProps> = ({
         ) : (
           <span
             onClick={startQuiz}
-            className="badge badge-secondary badge-xs px-2 click cursor-pointer hover:bg-purple-800 transition-colors"
+            className="badge badge-secondary p-2 badge-xs click cursor-pointer hover:bg-purple-800 transition-colors"
           >
             Start Quiz
           </span>
         )}
-        <span className="badge badge-outline-error badge-xs px-2 cursor-pointer">
+        <span className="badge p-2 badge-xs bg-error/50 text-base-100 cursor-pointer">
           Remove
         </span>
       </div>

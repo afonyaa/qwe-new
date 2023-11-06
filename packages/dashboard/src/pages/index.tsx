@@ -8,6 +8,7 @@ const QuizzesPage = React.lazy(() => import('./quizzes'));
 const QuizPage = React.lazy(() => import('./quiz'));
 const ClassesPage = React.lazy(() => import('./classes'));
 const ProfileSettingsPage = React.lazy(() => import('./profileSettings'));
+const PDFQuizGeneration = React.lazy(() => import('./pdfQuizGeneration'));
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense>
             <ProfileSettingsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: RootPagesPaths.quizFromPDF,
+        element: (
+          <Suspense>
+            <PDFQuizGeneration />
           </Suspense>
         ),
       },

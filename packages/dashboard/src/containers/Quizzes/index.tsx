@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { QuizList } from './QuizList';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getQuizListQuery } from './queries/getQuizListQuery';
@@ -7,8 +7,11 @@ import { GenerateQuizModal } from './GenerateQuizModal';
 import { useModal } from '@components/Modal';
 import { generateQuizQuery } from './queries/generateQuizQuery';
 import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
+import { useNavigate } from 'react-router-dom';
+import { RootPagesPaths } from '@pages/constants';
 
 export const Quizzes: FC = () => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { data: quizListData, isLoading: quizListLoading } = useQuery({
     queryKey: ['quizList'],
@@ -32,10 +35,15 @@ export const Quizzes: FC = () => {
     });
   };
 
+  const redirectToPDFCreation = useCallback(() => {
+    navigate(`${RootPagesPaths.quizFromPDF}`);
+  }, [navigate]);
+
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="flex items-center gap-x-3">
         <Controls
+          onCreateQuizFromPDF={redirectToPDFCreation}
           onCreateQuiz={generateQuizModal.handleOpenModal}
           isLoading={quizListLoading}
           quizCount={quizListData?.length}

@@ -48,7 +48,7 @@ const Modal: FC<ModalProps> = ({
               <div className="flex gap-3 justify-end">
                 <button
                   onClick={handleCancel}
-                  className={`btn btn-outline btn-ghost`}
+                  className={`btn btn-sm text-xs btn-outline btn-ghost`}
                   disabled={cancelDisabled || isLoading}
                 >
                   {isLoading && (
@@ -58,7 +58,7 @@ const Modal: FC<ModalProps> = ({
                 </button>
                 <button
                   onClick={handleOk}
-                  className={`btn btn-active btn-accent text-base-100`}
+                  className={`btn btn-sm text-xs btn-active btn-accent text-base-100`}
                   disabled={okDisabled || isLoading}
                 >
                   {isLoading && (

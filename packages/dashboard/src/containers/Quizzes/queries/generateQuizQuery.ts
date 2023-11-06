@@ -5,7 +5,9 @@ export const generateQuizQuery = (
   payload: CreateQuizPayload,
 ): Promise<string> => {
   return axios
-    .post('quiz/generate', payload)
+    .post('quiz/generate/topic', payload)
     .then((response) => response.data)
-    .catch((e) => e);
+    .catch((e) => {
+      return Promise.reject(e.response);
+    });
 };

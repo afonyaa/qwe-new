@@ -2,7 +2,7 @@ import axios from '@quiz-web-engine/fetcher';
 import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
 
 export const generateQuizFromPDF = (
-    payload: CreateQuizPayload,
+  payload: CreateQuizPayload,
 ): Promise<string> => {
   return axios
     .post('quiz/generate/paper', payload)

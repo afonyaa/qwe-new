@@ -11,6 +11,7 @@ export const QuizCard: FC<QuizCardProps> = ({
   quizName,
   quizImage,
   questionsAmount,
+  onRemoveQuiz,
   id,
 }) => {
   const navigate = useNavigate();
@@ -69,7 +70,12 @@ export const QuizCard: FC<QuizCardProps> = ({
             Start Quiz
           </span>
         )}
-        <span className="badge p-2 badge-xs bg-error/50 text-base-100 cursor-pointer">
+        <span
+          onClick={() => {
+            onRemoveQuiz(String(id));
+          }}
+          className="badge p-2 badge-xs bg-error/50 text-base-100 cursor-pointer"
+        >
           Remove
         </span>
       </div>

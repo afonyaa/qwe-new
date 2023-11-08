@@ -11,6 +11,7 @@ const BACKEND_URL =
 
 const instance = axios.create({
   baseURL: BACKEND_URL,
+  timeout: 20000,
 });
 
 instance.interceptors.request.use(

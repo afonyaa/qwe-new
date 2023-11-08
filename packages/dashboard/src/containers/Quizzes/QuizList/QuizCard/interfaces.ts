@@ -3,4 +3,5 @@ export interface QuizCardProps {
   quizName: string;
   questionsAmount: number;
   id: number;
+  onRemoveQuiz: (id: string) => void;
 }

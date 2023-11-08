@@ -1,11 +1,11 @@
 import axios from '@quiz-web-engine/fetcher';
-import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
+import { RemoveQuizPayload } from '@coreTypes/quriesModels/RemoveQuizPayload';
 
-export const generateQuizFromPDF = (
-    payload: CreateQuizPayload,
+export const removeQuizQuery = (
+  payload: RemoveQuizPayload,
 ): Promise<string> => {
   return axios
-    .post('quiz/generate/paper', payload)
+    .delete(`quiz/${payload.id}`)
     .then((response) => response.data)
     .catch((e) => {
       return Promise.reject(e.response);

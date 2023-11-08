@@ -19,7 +19,7 @@ export const PDFQuizGeneration: FC = () => {
     isLoading: quizGenerateLoading,
     error,
   } = useMutation({
-    mutationKey: ['generateQuiz'],
+    mutationKey: ['generateQuizFromPdf'],
     mutationFn: generateQuizFromPDF,
   });
 
@@ -38,21 +38,17 @@ export const PDFQuizGeneration: FC = () => {
 
   const onGenerateQuizFromPDF = useCallback(() => {
     const payload: CreateQuizPayload = {
-      questionCount: 5,
+      questionCount: '2',
       topic: pdfText,
     };
-    mutate(
-      { payload },
-      {
-        onSuccess: (data) => {
-          console.log(data.quizId);
-          redirectToQuiz(data.quizId);
-        },
-        onError: (err) => {
-          console.error(err);
-        },
+    mutate(payload, {
+      onSuccess: (data) => {
+        redirectToQuiz(data.quizId);
       },
-    );
+      onError: (err) => {
+        console.error(err);
+      },
+    });
   }, [mutate, pdfText, redirectToQuiz]);
 
   const handlePDFFileChange: ChangeEventHandler<HTMLInputElement> = () => {
@@ -166,8 +162,10 @@ export const PDFQuizGeneration: FC = () => {
             </div>
             <div className="">
               <textarea
+                onChange={(e) => {
+                  setPdfText(e.target.value);
+                }}
                 className="textarea textarea-secondary w-full"
-                placeholder="Bio"
                 value={pdfText}
               ></textarea>
             </div>

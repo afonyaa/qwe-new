@@ -9,6 +9,7 @@ import { generateQuizQuery } from './queries/generateQuizQuery';
 import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
 import { useNavigate } from 'react-router-dom';
 import { RootPagesPaths } from '@pages/constants';
+import { removeQuizQuery } from './queries/removeQuizQuery';
 
 export const Quizzes: FC = () => {
   const navigate = useNavigate();
@@ -19,20 +20,37 @@ export const Quizzes: FC = () => {
     refetchOnWindowFocus: false,
   });
 
-  const { mutate, isLoading: quizGenerateLoading } = useMutation({
-    mutationKey: ['generateQuiz'],
-    mutationFn: generateQuizQuery,
+  const { mutate: mutateRemoveQuiz } = useMutation({
+    mutationKey: ['removeQuiz'],
+    mutationFn: removeQuizQuery,
   });
+
+  const { mutate: mutateGenerateQuiz, isLoading: quizGenerateLoading } =
+    useMutation({
+      mutationKey: ['generateQuiz'],
+      mutationFn: generateQuizQuery,
+    });
 
   const generateQuizModal = useModal({});
 
   const onSubmitNewQuizData = (quizPayload: CreateQuizPayload) => {
-    mutate(quizPayload, {
+    mutateGenerateQuiz(quizPayload, {
       onSuccess: () => {
         queryClient.invalidateQueries(['quizList']);
         generateQuizModal.handleCancelButton();
       },
     });
+  };
+
+  const onRemoveQuiz = (id: string) => {
+    mutateRemoveQuiz(
+      { id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(['quizList']);
+        },
+      },
+    );
   };
 
   const redirectToPDFCreation = useCallback(() => {
@@ -50,7 +68,11 @@ export const Quizzes: FC = () => {
         />
       </div>
       <div className="flex-grow h-full py-4 pb-8">
-        <QuizList isLoading={quizListLoading} quizList={quizListData} />
+        <QuizList
+          onRemoveQuiz={onRemoveQuiz}
+          isLoading={quizListLoading}
+          quizList={quizListData}
+        />
       </div>
       <GenerateQuizModal
         isOpen={generateQuizModal.isOpen}

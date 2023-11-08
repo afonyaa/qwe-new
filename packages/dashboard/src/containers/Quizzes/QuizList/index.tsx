@@ -5,7 +5,11 @@ import { QuizListProps } from './interfaces';
 import { Skeleton } from './Skeleton';
 import { NoQuizzes } from './NoQuizzes';
 
-export const QuizList: FC<QuizListProps> = ({ quizList, isLoading }) => {
+export const QuizList: FC<QuizListProps> = ({
+  onRemoveQuiz,
+  quizList,
+  isLoading,
+}) => {
   if (isLoading) {
     return <Skeleton />;
   }
@@ -22,6 +26,7 @@ export const QuizList: FC<QuizListProps> = ({ quizList, isLoading }) => {
           key={quiz.quizId}
           id={quiz.quizId}
           questionsAmount={quiz.questions.length}
+          onRemoveQuiz={onRemoveQuiz}
         />
       ))}
     </div>

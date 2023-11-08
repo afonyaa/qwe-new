@@ -38,7 +38,7 @@ export const PDFQuizGeneration: FC = () => {
 
   const onGenerateQuizFromPDF = useCallback(() => {
     const payload: CreateQuizPayload = {
-      questionCount: '2',
+      questionCount: '5',
       topic: pdfText,
     };
     mutate(payload, {

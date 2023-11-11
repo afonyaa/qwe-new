@@ -59,7 +59,7 @@ export const Quizzes: FC = () => {
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <div className="flex items-center gap-x-3">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <Controls
           onCreateQuizFromPDF={redirectToPDFCreation}
           onCreateQuiz={generateQuizModal.handleOpenModal}

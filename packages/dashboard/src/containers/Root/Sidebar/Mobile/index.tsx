@@ -21,7 +21,7 @@ export const SidebarMobile: FC = () => {
         </button>
       )}
       <aside
-        className={`block md:hidden w-56 fixed bg-white rounded-r-lg -mt-4 h-full z-20 shadow-lg transition-all ${
+        className={`block md:hidden w-56 fixed bg-white rounded-r-lg -mt-4 h-full z-40 shadow-lg transition-all ${
           isOpen ? 'left-0' : '-left-60'
         }`}
       >

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { joinQuizQuery } from '@containers/Dashboard/queries/joinQuizQuery';
+import { joinQuizQuery } from './queries/joinQuizQuery';
 
 export const JoinQuiz: FC = () => {
   const [pinCode, setPinCode] = useState<string>('');
@@ -26,7 +26,7 @@ export const JoinQuiz: FC = () => {
   };
 
   return (
-    <div className="card w-96 bg-base-200/30 shadow-md">
+    <div className="card w-96 bg-base-200/250 shadow-md">
       <div className="card-body">
         <h2 className="card-title">Join the quiz</h2>
         <p>Enter the pin below and join to quiz session</p>
@@ -39,7 +39,7 @@ export const JoinQuiz: FC = () => {
             className="input input-bordered input-secondary w-full max-w-xs focus:outline-none"
           />
           <button
-            className="btn btn-primary"
+            className="btn btn-secondary"
             disabled={!pinCode || isLoading}
             onClick={onClickJoin}
           >

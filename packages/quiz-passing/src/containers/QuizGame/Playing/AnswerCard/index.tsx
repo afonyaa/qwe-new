@@ -9,9 +9,7 @@ export const AnswerCard: FC<AnswerCardProps> = ({
   isSubmitted,
   disabled,
 }) => {
-  const [isSubmittedWaitFetch, setIsSubmittedWaitFetch] = useState(false);
-
-  console.log(text, isSubmitted, disabled);
+  const [localClicked, setLocalClicked] = useState(false);
 
   const orderTWColorMap: Record<number, string> = {
     0: 'bg-gradient-to-r from-red-700 from-10% via-amber-600 via-30% to-fuchsia-800 to-90%',
@@ -20,20 +18,21 @@ export const AnswerCard: FC<AnswerCardProps> = ({
     3: 'bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%',
   };
 
-  const disabledStyles =
-    isSubmittedWaitFetch || isSubmitted
-      ? 'cursor-not-allowed bg-base-300'
-      : disabled
-      ? 'cursor-not-allowed bg-slate-4'
-      : 'cursor-pointer bg-slate-800 hover:bg-slate-900';
+  const cardBackground = localClicked
+    ? 'cursor-not-allowed pointer-events-none bg-primary'
+    : isSubmitted
+    ? 'cursor-not-allowed pointer-events-none bg-primary'
+    : disabled
+    ? 'cursor-not-allowed pointer-events-none bg-base-300'
+    : 'cursor-pointer bg-base-200';
 
   return (
     <div
       onClick={() => {
+        setLocalClicked(true);
         onAnswerClick(answerId);
-        if (!disabled) setIsSubmittedWaitFetch(true);
       }}
-      className={`p-4 rounded-md text-accent-content transition-colors ${disabledStyles}`}
+      className={`p-4 rounded-md text-accent-content transition-colors ${cardBackground} hover:bg-neutral-focus`}
     >
       {text}
       <div className={`${orderTWColorMap[order]} h-1 mt-4`}></div>

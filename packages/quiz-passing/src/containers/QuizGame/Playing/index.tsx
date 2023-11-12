@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { PlayingProps } from './interfaces';
 import { AnswerCard } from './AnswerCard';
 import { UserRole } from '@coreTypes/quriesModels/UserRole';
@@ -17,8 +17,11 @@ export const Playing: FC<PlayingProps> = ({ currentQuestion, role }) => {
     mutationFn: submitQuestion,
   });
 
+  const [disabledCardClicked, setDisabledCardClicked] = useState(false);
+
   const handleAnswerClick = (answerId: number) => {
     if (role === UserRole.Player) {
+      setDisabledCardClicked(true);
       if (!currentQuestion.submitted && !isLoading) {
         mutate(
           {
@@ -36,6 +39,11 @@ export const Playing: FC<PlayingProps> = ({ currentQuestion, role }) => {
     }
   };
 
+  const areAllCardsDisabled =
+    disabledCardClicked ||
+    currentQuestion.submittedAnswerId ||
+    role === UserRole.Creator;
+
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <div className="w-1/2">
@@ -51,7 +59,7 @@ export const Playing: FC<PlayingProps> = ({ currentQuestion, role }) => {
               isSubmitted={
                 answer.answerId === currentQuestion?.submittedAnswerId
               }
-              disabled={currentQuestion.submitted}
+              disabled={areAllCardsDisabled}
               key={answer.text}
               answerId={answer.answerId}
               text={answer.text}

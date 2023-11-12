@@ -15,4 +15,5 @@ export interface QuizState {
   totalQuestions: number;
   currentQuestion: QuizQuestion;
   submitted: true;
+  playerScore: number;
 }

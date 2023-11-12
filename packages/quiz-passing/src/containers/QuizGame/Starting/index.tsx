@@ -22,12 +22,9 @@ export const Starting: FC<StartingProps> = ({
   if (role === UserRole.Player) {
     return (
       <div className="h-full flex items-center justify-center">
-        <div className="card">
-          <div className="card-body">
-            <h2 className="card-header">Hello, {playerName} !</h2>
-            <p className="text-content2">Wait till the quiz will be started</p>
-          </div>
-        </div>
+        <h1 className="text-secondary-content">
+          Hello, {playerName}. Wait, till quiz will be started
+        </h1>
       </div>
     );
   }

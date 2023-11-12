@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { StepsInfo } from './StepsInfo';
 import { useHandlePDFFiles } from './hooks/useHandlePDFFiles';
 import { useCreateQuizQuery } from './hooks/useCreateQuizQuery';
+import RocketLaunchIcon from '@heroicons/react/24/outline/RocketLaunchIcon';
 
 export const PDFQuizGeneration: FC = () => {
   const { fileInputRef, handlePDFFileChange, extractedText, PDFParseLoading } =
@@ -71,7 +72,12 @@ export const PDFQuizGeneration: FC = () => {
                 {generateQuizLoading ? (
                   <span className="loading loading-ring loading-sm"></span>
                 ) : (
-                  'Generate quiz'
+                  <>
+                    <span className="hidden sm:inline-block">
+                      Generate quiz
+                    </span>
+                    <RocketLaunchIcon className="block sm:hidden w-4" />
+                  </>
                 )}
               </button>
             </div>

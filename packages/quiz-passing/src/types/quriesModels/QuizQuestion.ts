@@ -1,4 +1,4 @@
-import { Answer } from '@/types/quriesModels/Answer';
+import { Answer } from '@coreTypes/quriesModels/Answer';
 
 export interface QuizQuestion {
   text: string;

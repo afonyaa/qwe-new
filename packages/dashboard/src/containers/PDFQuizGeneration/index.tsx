@@ -1,173 +1,79 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
-import { ChangeEventHandler, FC, useCallback, useRef, useState } from 'react';
-import quizPictureCover from './assets/generate-quiz-cover.png';
-import * as pdfjs from 'pdfjs-dist/build/pdf';
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker?worker';
-import { useMutation } from '@tanstack/react-query';
-import { generateQuizFromPDF } from './queries/generateQuizFromPDF';
-import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
-import { useNavigate } from 'react-router-dom';
-import { RootPagesPaths } from '@pages/constants';
-
-window.pdfjsWorker = pdfjsWorker;
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import { FC, useState } from 'react';
+import { StepsInfo } from './StepsInfo';
+import { useHandlePDFFiles } from './hooks/useHandlePDFFiles';
+import { useCreateQuizQuery } from './hooks/useCreateQuizQuery';
 
 export const PDFQuizGeneration: FC = () => {
+  const { fileInputRef, handlePDFFileChange, extractedText, PDFParseLoading } =
+    useHandlePDFFiles();
+
+  const [questionsCount, setQuestionsCount] = useState<string>();
+
   const {
-    mutate,
-    isLoading: quizGenerateLoading,
-    error,
-  } = useMutation({
-    mutationKey: ['generateQuizFromPdf'],
-    mutationFn: generateQuizFromPDF,
-  });
+    isLoading: generateQuizLoading,
+    handleGenerateNewQuiz,
+    // error: generateQuizError, todo toasts
+  } = useCreateQuizQuery();
 
-  const navigate = useNavigate();
-
-  const redirectToQuiz = useCallback(
-    (quizId: string) => {
-      navigate(`${RootPagesPaths.quizzes}/${quizId}`);
-    },
-    [navigate],
-  );
-
-  const [pdfText, setPdfText] = useState('');
-  const [PDFParseLoading, setPDFParseLoading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const onGenerateQuizFromPDF = useCallback(() => {
-    const payload: CreateQuizPayload = {
-      questionCount: '5',
-      topic: pdfText,
-    };
-    mutate(payload, {
-      onSuccess: (data) => {
-        redirectToQuiz(data.quizId);
-      },
-      onError: (err) => {
-        console.error(err);
-      },
-    });
-  }, [mutate, pdfText, redirectToQuiz]);
-
-  const handlePDFFileChange: ChangeEventHandler<HTMLInputElement> = () => {
-    setPDFParseLoading(true);
-    if (fileInputRef?.current) {
-      const file = fileInputRef.current.files![0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = async (event: ProgressEvent<FileReader>) => {
-          const arrayBuffer = event?.target?.result;
-          if (arrayBuffer) {
-            const pdfData = new Uint8Array(arrayBuffer as ArrayBuffer);
-            extractText(pdfData)
-              .then(
-                function (text) {
-                  setPdfText(text);
-                },
-                function (reason) {
-                  console.error(reason);
-                },
-              )
-              .finally(() => {
-                setPDFParseLoading(false);
-              });
-          }
-        };
-        reader.readAsArrayBuffer(file);
-      }
-    }
-  };
-
-  function extractText(pdfUrl) {
-    const pdf = pdfjs.getDocument(pdfUrl);
-    return pdf.promise.then(function (pdf) {
-      const totalPageCount = pdf.numPages;
-      const countPromises = [];
-      for (let currentPage = 1; currentPage <= totalPageCount; currentPage++) {
-        const page = pdf.getPage(currentPage);
-        countPromises.push(
-          page.then(function (page) {
-            const textContent = page.getTextContent();
-            return textContent.then(function (text) {
-              return text.items
-                .map(function (s) {
-                  return s.str;
-                })
-                .join('');
-            });
-          }),
-        );
-      }
-
-      return Promise.all(countPromises).then(function (texts) {
-        return texts.join('');
-      });
-    });
-  }
-
+  const canGenerateQuiz =
+    extractedText &&
+    Number(questionsCount) > 0 &&
+    Number(questionsCount) <= 20 &&
+    !generateQuizLoading;
   return (
-    <div className="h-full flex flex-col">
-      <div className="hero">
-        <div className="hero-content flex-col lg:flex-row">
-          <img
-            src={quizPictureCover}
-            className="max-w-sm h-48 lg:block hidden"
-          />
-          <div>
-            <h1 className="text-5xl font-bold">
-              Create quiz from your own source file
-            </h1>
-            <p className="py-6">
-              Please Provide text/pdf file, we will parse it and make quiz for
-              you
-            </p>
-            <div className="w-full max-w-xs">
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".pdf"
-                className="file-input file-input-bordered w-full max-w-xs"
-                onChange={handlePDFFileChange}
-              />
-            </div>
-          </div>
-        </div>
+    <div className="h-full flex flex-col md:flex-row gap-2">
+      <div className="flex flex-col gap-4 items-center justify-center p-2 md:basis-1/2 bg-gradient-to-r from-violet-200 to-pink-200 rounded-md">
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".pdf"
+          className="file-input file-input-sm file-input-bordered w-full max-w-xs"
+          onChange={handlePDFFileChange}
+        />
+        <StepsInfo />
       </div>
-      <div className=" h-full px-5 bg-red overflow-y-auto">
-        {PDFParseLoading && <progress className="progress w-56"></progress>}
-        {pdfText && (
-          <div tabIndex={0} className="bg-base-200 p-8 rounded-xl">
-            <div className="collapse-title flex items-center flex-wrap gap-2 text-xl font-medium">
-              PDF Content is ready
-              <button
-                onClick={onGenerateQuizFromPDF}
-                className="btn btn-sm text-xs btn-active ml-4"
-                disabled={quizGenerateLoading}
-              >
-                {quizGenerateLoading && (
-                  <span className="loading loading-infinity loading-xs"></span>
-                )}
-                Generate quiz
-              </button>
-              <div className="badge badge-success gap-2">
-                {pdfText.length} characters
-              </div>
-              {error?.data?.message && (
-                <div className="badge badge-error gap-2">
-                  {error?.data?.message}
+      <div className="md:basis-1/2 grow">
+        {PDFParseLoading ? (
+          <div className="flex justify-center items-center h-full">
+            <span className="loading loading-spinner text-primary"></span>
+          </div>
+        ) : (
+          <div className="flex flex-col h-full gap-4">
+            <div className="grow">
+              <textarea
+                className="textarea h-full textarea-bordered w-full resize-none focus:outline-none"
+                placeholder="PDF text content"
+                value={extractedText}
+              ></textarea>
+            </div>
+            <div className="flex justify-end items-center gap-4">
+              {extractedText && (
+                <div className="badge badge-success gap-2">
+                  {extractedText?.length}
+                  <span className={'hidden sm:inline-block'}>symbols</span>
                 </div>
               )}
-            </div>
-            <div className="">
-              <textarea
-                onChange={(e) => {
-                  setPdfText(e.target.value);
-                }}
-                className="textarea textarea-secondary w-full"
-                value={pdfText}
-              ></textarea>
+              <input
+                type="number"
+                value={questionsCount}
+                placeholder="Questions amount"
+                onChange={(e) => setQuestionsCount(e.target.value)}
+                className="input input-bordered input-primary w-36  input-xs focus:outline-none"
+              />
+              <button
+                className={`btn btn-outline btn-neutral btn-sm ${
+                  !canGenerateQuiz && 'btn-disabled'
+                }`}
+                onClick={() =>
+                  handleGenerateNewQuiz(extractedText!, questionsCount!)
+                }
+              >
+                {generateQuizLoading ? (
+                  <span className="loading loading-ring loading-sm"></span>
+                ) : (
+                  'Generate quiz'
+                )}
+              </button>
             </div>
           </div>
         )}

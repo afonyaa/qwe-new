@@ -1,4 +1,4 @@
 export interface CreateQuizPayload {
   topic: string;
-  questionCount?: number;
+  questionCount?: string;
 }

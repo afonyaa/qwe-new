@@ -12,13 +12,13 @@ export const Controls: FC<ControlsProps> = ({
     <>
       <button
         onClick={onCreateQuiz}
-        className="btn btn-outline-secondary text-xs btn-sm"
+        className="btn w-full md:w-fit btn-outline-secondary text-xs btn-sm"
       >
         Generate new Quiz
       </button>
       <button
         onClick={onCreateQuizFromPDF}
-        className="btn btn-outline btn-sm text-xs btn-ghost"
+        className="btn w-full md:w-fit btn-outline btn-sm text-xs btn-ghost"
       >
         Generate Quiz from pdf <BoltIcon width={20} />
       </button>

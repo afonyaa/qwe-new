@@ -9,8 +9,8 @@ export const NavItem: FC<NavItemProps> = ({ name, link, icon }) => {
       className={({ isActive }) =>
         `${
           isActive
-            ? 'text-slate-200 bg-purple-900 opacity-80'
-            : 'text-slate-500'
+            ? 'text-base-100 bg-primary-focus opacity-70'
+            : 'text-info-content'
         } flex items-center text-sm font-medium gap-x-2 rounded-md px-3 py-2`
       }
     >

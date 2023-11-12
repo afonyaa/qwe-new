@@ -1,7 +1,8 @@
 import { FC } from 'react';
+import { ProfileSettings } from '@containers/ProfileSettings';
 
 const ProfileSettingsPage: FC = () => {
-  return <div>Profile Settings</div>;
+  return <ProfileSettings />;
 };
 
 export default ProfileSettingsPage;

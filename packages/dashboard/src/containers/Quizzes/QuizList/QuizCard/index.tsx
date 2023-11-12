@@ -9,7 +9,6 @@ import { startQuizQuery } from './queries/startQuizQuery';
 
 export const QuizCard: FC<QuizCardProps> = ({
   quizName,
-  quizImage,
   questionsAmount,
   onRemoveQuiz,
   id,
@@ -43,41 +42,46 @@ export const QuizCard: FC<QuizCardProps> = ({
   };
 
   return (
-    <div className="flex p-4 border rounded-md justify-between">
-      <div className="flex gap-x-2">
-        <img src={quizImage ?? previewImage} className="rounded-md w-16 h-16" />
-        <div className="flex flex-col justify-between ml-2">
-          <h1
-            className="font-semibold max-w-[24rem] text-slate-500 cursor-pointer hover:text-slate-600 transition-colors"
+    <div className="card card-side w-full md:min-w-96 bg-base-100 shadow-md">
+      <figure>
+        <img src={previewImage} alt="Quiz image" className="w-24 h-full" />
+      </figure>
+      <div className="card-body px-4 py-2">
+        <div className="card-title max-w-sm">
+          <h2
             onClick={redirectToQuiz}
+            className="cursor-pointer hover:text-primary-focus transition-colors text-sm sm:text-base"
           >
             {quizName}
-          </h1>
+          </h2>
+        </div>
+        <div className="card-actions justify-end mt-4">
           <span className="badge p-2 w-fit badge-xs mt-1">
             <ListBulletIcon height={16} />
-            <span className="ml-1">{questionsAmount} questions</span>
+            <span className="ml-1 text-[0.5rem] sm:text-xs">
+              {questionsAmount}{' '}
+              <span className="hidden sm:inline">questions</span>
+            </span>
           </span>
-        </div>
-      </div>
-      <div className="flex items-start gap-2">
-        {isStartLoading ? (
-          <progress className="progress progress-flat-secondary w-12"></progress>
-        ) : (
-          <span
+          <button
             onClick={startQuiz}
-            className="badge badge-secondary p-2 badge-xs click cursor-pointer hover:bg-purple-800 transition-colors"
+            className="btn btn-active btn-neutral btn-xs text-[0.5rem] sm:text-xs"
           >
-            Start Quiz
-          </span>
-        )}
-        <span
-          onClick={() => {
-            onRemoveQuiz(String(id));
-          }}
-          className="badge p-2 badge-xs bg-error/50 text-base-100 cursor-pointer"
-        >
-          Remove
-        </span>
+            {isStartLoading ? (
+              <progress className="progress bg-secondary-focus progress-flat-secondary w-12"></progress>
+            ) : (
+              'Start quiz'
+            )}
+          </button>
+          <button
+            onClick={() => {
+              onRemoveQuiz(String(id));
+            }}
+            className="btn btn-outline btn-error btn-xs text-[0.5rem] sm:text-xs"
+          >
+            Remove quiz
+          </button>
+        </div>
       </div>
     </div>
   );

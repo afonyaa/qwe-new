@@ -19,7 +19,7 @@ export const QuizList: FC<QuizListProps> = ({
   }
 
   return (
-    <div className="flex flex-col w-2/3 h-full gap-y-2 overflow-y-auto pr-4">
+    <div className="flex flex-col w-full md:w-fit h-full gap-y-4 mt-4 pr-4 overflow-y-auto">
       {quizList?.map((quiz) => (
         <QuizCard
           quizName={quiz.name}

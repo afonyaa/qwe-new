@@ -32,9 +32,15 @@ const Modal: FC<ModalProps> = ({
   return (
     <ReactPortal wrapperId={'react-portal-modal-container'}>
       <>
-        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-          <div className="relative w-auto my-6 mx-auto">
-            <div className="bg-base-100 p-6 rounded-md flex flex-col gap-5 w-[32rem]">
+        <div
+          onClick={handleCancel}
+          className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+        >
+          <div
+            className="relative w-auto my-6 mx-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-base-100 p-6 rounded-md flex flex-col gap-5 sm:w-[32rem] w-full">
               <label
                 onClick={handleCancel}
                 className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

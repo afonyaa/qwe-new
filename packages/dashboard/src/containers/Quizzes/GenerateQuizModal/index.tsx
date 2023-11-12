@@ -31,7 +31,7 @@ export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
     }));
   };
 
-  const handleChangeQuizTopicQuestionsNumber = (text: number) => {
+  const handleChangeQuizTopicQuestionsNumber = (text: string) => {
     setCreateQuizPayload((prev) => ({
       ...prev,
       questionCount: text,
@@ -40,7 +40,7 @@ export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
 
   const canCreate =
     createQuizPayload?.questionCount &&
-    createQuizPayload?.questionCount > 0 &&
+    Number(createQuizPayload?.questionCount) > 0 &&
     createQuizPayload.topic;
 
   const handleOkButton = () => {
@@ -70,9 +70,7 @@ export const GenerateQuizModal: FC<GenerateQuizModalProps> = ({
               className="input input-bordered w-64 focus:outline-none"
               placeholder="Number of questions?"
               onChange={(event) => {
-                handleChangeQuizTopicQuestionsNumber(
-                  event.target.value as unknown as number,
-                );
+                handleChangeQuizTopicQuestionsNumber(event.target.value);
               }}
               value={createQuizPayload.questionCount}
             />

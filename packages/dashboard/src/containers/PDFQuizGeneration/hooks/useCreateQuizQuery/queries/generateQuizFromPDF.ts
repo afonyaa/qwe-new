@@ -3,7 +3,7 @@ import { CreateQuizPayload } from '@coreTypes/quriesModels/CreateQuizPayload';
 
 export const generateQuizFromPDF = (
   payload: CreateQuizPayload,
-): Promise<string> => {
+): Promise<{ quizId: string }> => {
   return axios
     .post('quiz/generate/paper', payload)
     .then((response) => response.data)

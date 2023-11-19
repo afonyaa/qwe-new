@@ -3,6 +3,7 @@ import { StepsInfo } from './StepsInfo';
 import { useHandlePDFFiles } from './hooks/useHandlePDFFiles';
 import { useCreateQuizQuery } from './hooks/useCreateQuizQuery';
 import RocketLaunchIcon from '@heroicons/react/24/outline/RocketLaunchIcon';
+import { InstantGeneration } from '@containers/PDFQuizGeneration/InstantGeneration';
 
 export const PDFQuizGeneration: FC = () => {
   const { fileInputRef, handlePDFFileChange, extractedText, PDFParseLoading } =
@@ -32,6 +33,7 @@ export const PDFQuizGeneration: FC = () => {
           onChange={handlePDFFileChange}
         />
         <StepsInfo />
+        <InstantGeneration />
       </div>
       <div className="md:basis-1/2 grow">
         {PDFParseLoading ? (

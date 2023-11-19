@@ -4,10 +4,13 @@ import { QuestionResultProps } from '@containers/QuizGame/shared/QuestionResult/
 export const QuestionResult: FC<QuestionResultProps> = ({
   currentQuestion,
   onNextQuestion,
+  isLastQuestion,
+  onLeaderboard,
 }) => {
   const rightAnswer = currentQuestion?.answers.find(
     (answer) => answer.isRightAnswer,
   );
+
   return (
     <div className="flex flex-col items-start gap-4">
       <h1 className="text-xl text-primary-content">
@@ -18,11 +21,17 @@ export const QuestionResult: FC<QuestionResultProps> = ({
         <span className="text-green-400 ml-4">{rightAnswer?.text}</span>
       </h2>
       <div>
-        {onNextQuestion && (
-          <button onClick={onNextQuestion} className="btn">
-            Go to next question
-          </button>
-        )}
+        {!isLastQuestion
+          ? onNextQuestion && (
+              <button onClick={onNextQuestion} className="btn">
+                Go to next question
+              </button>
+            )
+          : onLeaderboard && (
+              <button onClick={onLeaderboard} className="btn">
+                Leaderboard
+              </button>
+            )}
       </div>
     </div>
   );

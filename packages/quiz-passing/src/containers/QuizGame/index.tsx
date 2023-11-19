@@ -38,17 +38,14 @@ export const QuizGame: FC<QuizGameProps> = ({ lobbyId }) => {
     [QuizStatus.LeaderBoard]: (
       <LeaderBoard
         players={data.players}
+        totalQuestions={data.totalQuestions}
         currentQuestion={data.currentQuestion}
         role={data.role}
         playerScore={data.playerScore}
       />
     ),
     [QuizStatus.Finished]: (
-      <Finishing
-        role={data.role}
-        players={data.players}
-        currentQuestion={data.currentQuestion}
-      />
+      <Finishing role={data.role} players={data.players} />
     ),
   };
 
